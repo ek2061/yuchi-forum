@@ -9,7 +9,6 @@ const Vertical = (props: StackProps) => (
 Vertical.defaultProps = {
   justifyContent: "center",
   alignItems: "center",
-  spacing: 1,
   sx: { width: "100%", height: "100%" },
 };
 

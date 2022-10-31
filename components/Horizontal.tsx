@@ -11,7 +11,6 @@ const Horizontal = (props: StackProps) => {
 Horizontal.defaultProps = {
   justifyContent: "center",
   alignItems: "center",
-  spacing: "center",
   sx: { width: "100%", height: "100%" },
 };
 
