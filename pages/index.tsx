@@ -1,6 +1,8 @@
+import { HorizontalCenter } from "components";
 import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "styles/container.module.css";
+import { ArticleCard } from "views/ArticleCard";
 
 const Home: NextPage = () => {
   return (
@@ -11,7 +13,20 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.container}></main>
+      <main className={styles.container}>
+        <HorizontalCenter>
+          <ArticleCard
+            postedBy="Yuchi"
+            postTime="a minute ago"
+            post="This impressive paella is a perfect party dish and a fun meal to cook
+          together with your guests. Add 1 cup of frozen peas along with the
+          mussels, if you like."
+            like="5"
+            unlike="2"
+            comment="3"
+          />
+        </HorizontalCenter>
+      </main>
 
       <footer></footer>
     </div>
