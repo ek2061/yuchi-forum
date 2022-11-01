@@ -3,6 +3,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "styles/container.module.css";
 import { ArticleCard } from "views/ArticleCard";
+import { Header } from "views/Header";
 
 const Home: NextPage = () => {
   return (
@@ -14,6 +15,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.container}>
+        <Header />
         <HorizontalCenter>
           <ArticleCard
             postedBy="Yuchi"
