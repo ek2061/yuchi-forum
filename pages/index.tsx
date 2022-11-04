@@ -4,6 +4,7 @@ import Head from "next/head";
 import styles from "styles/container.module.css";
 import { ArticleCard } from "views/ArticleCard";
 import { Header } from "views/Header";
+import { Sidebar } from "views/Sidebar";
 
 const Home: NextPage = () => {
   return (
@@ -16,7 +17,8 @@ const Home: NextPage = () => {
 
       <main className={styles.container}>
         <Header />
-        <HorizontalCenter>
+        <HorizontalCenter sx={{ py: "1.5rem" }}>
+          <Sidebar />
           <ArticleCard
             postedBy="Yuchi"
             postTime="a minute ago"
