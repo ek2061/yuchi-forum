@@ -6,7 +6,7 @@ import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { SearchInput } from "components/SearchInput";
+import { SearchInput } from "components";
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "public/yuchi-forum-logo.svg";
