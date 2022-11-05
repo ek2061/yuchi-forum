@@ -1,6 +1,8 @@
 @media (min-width: 1400px) {
   .container {
     max-width: 1140px;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
   }
 }
 
