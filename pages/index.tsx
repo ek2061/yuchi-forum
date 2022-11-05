@@ -1,8 +1,7 @@
-import { HorizontalCenter } from "components";
+import { ArticleCard, HorizontalCenter } from "components";
 import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "styles/container.module.css";
-import { ArticleCard } from "views/ArticleCard";
 import { Header } from "views/Header";
 import { HotTopic } from "views/HotTopic";
 import { Sidebar } from "views/Sidebar";
