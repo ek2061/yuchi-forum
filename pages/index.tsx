@@ -4,6 +4,7 @@ import Head from "next/head";
 import styles from "styles/container.module.css";
 import { ArticleCard } from "views/ArticleCard";
 import { Header } from "views/Header";
+import { HotTopic } from "views/HotTopic";
 import { Sidebar } from "views/Sidebar";
 
 const Home: NextPage = () => {
@@ -29,6 +30,7 @@ const Home: NextPage = () => {
             unlike="2"
             comment="3"
           />
+          <HotTopic />
         </HorizontalCenter>
       </main>
 
