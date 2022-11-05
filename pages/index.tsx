@@ -18,7 +18,7 @@ const Home: NextPage = () => {
 
       <main className={styles.container}>
         <Header />
-        <HorizontalCenter sx={{ py: "1.5rem" }}>
+        <HorizontalCenter sx={{ py: "1.5rem" }} alignItems="start">
           <Sidebar />
           <ArticleCard
             postedBy="Yuchi"
