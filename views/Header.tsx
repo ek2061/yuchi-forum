@@ -21,7 +21,7 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   marginLeft: "auto",
   marginRight: "auto",
   width: "100%",
-  [theme.breakpoints.up("lg")]: {
+  [theme.breakpoints.up("xl")]: {
     maxWidth: "1140px",
   },
 }));
