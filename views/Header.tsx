@@ -139,7 +139,7 @@ export const Header: React.FC<{}> = () => {
             },
           }}
         >
-          Sign up
+          <Link href="/signup">Sign up</Link>
         </StyledButton>
       </StyledToolbar>
     </AppBar>
