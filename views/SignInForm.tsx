@@ -40,7 +40,7 @@ export const SignInForm: React.FC<{}> = () => {
         sx={{ mb: "1rem" }}
       />
       <TextInput
-        icon={<LockIcon sx={{ mr: 1, mb: "1rem" }} />}
+        icon={<LockIcon sx={{ mr: 1 }} />}
         placeholder="password"
         type="password"
       />
