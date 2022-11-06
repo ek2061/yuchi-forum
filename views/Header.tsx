@@ -126,7 +126,7 @@ export const Header: React.FC<{}> = () => {
           <SearchInput />
         </SearchContainer>
         <StyledButton variant="text" sx={{ color: "#fff", mx: 0.5 }}>
-          Sign in
+          <Link href="/signin">Sign in</Link>
         </StyledButton>
         <StyledButton
           variant="outlined"

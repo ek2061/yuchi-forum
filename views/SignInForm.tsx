@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
-import { TextInput } from "components";
+import { HorizontalEnd, TextInput } from "components";
 import Link from "next/link";
 import React from "react";
 
@@ -25,14 +25,14 @@ const RegisterFormContainer = styled(Box)(({ theme }) => ({
   },
 }));
 
-export const SignUpForm: React.FC<{}> = () => {
+export const SignInForm: React.FC<{}> = () => {
   return (
     <RegisterFormContainer component="form">
       <Typography variant="h4" align="center" sx={{ mb: "1rem" }}>
-        Sign Up
+        Sign In
       </Typography>
       <Typography variant="subtitle1" align="center" sx={{ mb: "1rem" }}>
-        Create a new account and join the hot topic!
+        Join the hot topic and have fun!
       </Typography>
       <TextInput
         icon={<AccountCircle sx={{ mr: 1, mb: "1rem" }} />}
@@ -43,22 +43,17 @@ export const SignUpForm: React.FC<{}> = () => {
         icon={<LockIcon sx={{ mr: 1, mb: "1rem" }} />}
         placeholder="password"
         type="password"
-        sx={{ mb: "1rem" }}
       />
-      <Typography variant="inherit" sx={{ mb: "1rem" }}>
-        By registering, you agree to the{" "}
-        <Link href="/" style={{ color: "#117E96", fontWeight: "400px" }}>
-          Privacy Policy
-        </Link>
-        .
-      </Typography>
+      <HorizontalEnd>
+        <Button>Forgot password?</Button>
+      </HorizontalEnd>
       <Button variant="contained" sx={{ width: "100%", mb: "1rem" }}>
-        Sign Up
+        Sign In
       </Button>
       <Divider />
-      Or already have an account?
+      Need an account?
       <Button>
-        <Link href="/signin">Sign In</Link>
+        <Link href="/signup">Sign Up</Link>
       </Button>
     </RegisterFormContainer>
   );
