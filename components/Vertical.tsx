@@ -1,6 +1,6 @@
 import Stack, { StackProps } from "@mui/material/Stack";
 
-const Vertical = (props: StackProps) => (
+const Vertical: React.FC<StackProps> = (props) => (
   <Stack direction="column" {...props}>
     {props.children}
   </Stack>
@@ -12,19 +12,19 @@ Vertical.defaultProps = {
   sx: { width: "100%", height: "100%" },
 };
 
-const VerticalStart = (props: StackProps) => (
+const VerticalStart: React.FC<StackProps> = (props) => (
   <Vertical justifyContent="flex-start" {...props} />
 );
 
-const VerticalCenter = (props: StackProps) => (
+const VerticalCenter: React.FC<StackProps> = (props) => (
   <Vertical justifyContent="center" {...props} />
 );
 
-const VerticalBetween = (props: StackProps) => (
+const VerticalBetween: React.FC<StackProps> = (props) => (
   <Vertical justifyContent="space-between" {...props} />
 );
 
-const VerticalEnd = (props: StackProps) => (
+const VerticalEnd: React.FC<StackProps> = (props) => (
   <Vertical justifyContent="flex-end" {...props} />
 );
 

@@ -1,6 +1,6 @@
 import Stack, { StackProps } from "@mui/material/Stack";
 
-const Horizontal = (props: StackProps) => {
+const Horizontal: React.FC<StackProps> = (props) => {
   return (
     <Stack direction="row" {...props}>
       {props.children}
@@ -14,19 +14,19 @@ Horizontal.defaultProps = {
   sx: { width: "100%", height: "100%" },
 };
 
-const HorizontalStart = (props: StackProps) => (
+const HorizontalStart: React.FC<StackProps> = (props) => (
   <Horizontal justifyContent="flex-start" {...props} />
 );
 
-const HorizontalCenter = (props: StackProps) => (
+const HorizontalCenter: React.FC<StackProps> = (props) => (
   <Horizontal justifyContent="center" {...props} />
 );
 
-const HorizontalBetween = (props: StackProps) => (
+const HorizontalBetween: React.FC<StackProps> = (props) => (
   <Horizontal justifyContent="space-between" {...props} />
 );
 
-const HorizontalEnd = (props: StackProps) => (
+const HorizontalEnd: React.FC<StackProps> = (props) => (
   <Horizontal justifyContent="flex-end" {...props} />
 );
 
