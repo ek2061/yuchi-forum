@@ -29,7 +29,7 @@ export const SignInForm: React.FC<{}> = () => {
   return (
     <RegisterFormContainer component="form">
       <Typography variant="h4" align="center" sx={{ mb: "1rem" }}>
-        Sign In
+        Sign in
       </Typography>
       <Typography variant="subtitle1" align="center" sx={{ mb: "1rem" }}>
         Join the hot topic and have fun!
@@ -48,12 +48,12 @@ export const SignInForm: React.FC<{}> = () => {
         <Button>Forgot password?</Button>
       </HorizontalEnd>
       <Button variant="contained" sx={{ width: "100%", mb: "1rem" }}>
-        Sign In
+        Sign in
       </Button>
       <Divider />
       Need an account?
       <Button>
-        <Link href="/signup">Sign Up</Link>
+        <Link href="/signup">Sign up</Link>
       </Button>
     </RegisterFormContainer>
   );
