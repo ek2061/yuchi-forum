@@ -10,12 +10,14 @@ import CardHeader from "@mui/material/CardHeader";
 import { red } from "@mui/material/colors";
 import Typography from "@mui/material/Typography";
 import { HorizontalEnd } from "components";
+import Link from "next/link";
 import React from "react";
 
 type ArticleCardProps = React.FC<{
   postedBy: string;
   postTime: string;
-  post: string;
+  title: string;
+  body: string;
   like: string | number;
   unlike: string | number;
   comment: string | number;
@@ -24,7 +26,8 @@ type ArticleCardProps = React.FC<{
 export const ArticleCard: ArticleCardProps = ({
   postedBy,
   postTime,
-  post,
+  title,
+  body,
   like,
   unlike,
   comment,
@@ -40,9 +43,14 @@ export const ArticleCard: ArticleCardProps = ({
         title={postedBy}
         subheader={postTime}
       ></CardHeader>
-      <CardContent>
+      <CardContent sx={{ py: 0 }}>
+        <Typography variant="h5" sx={{ mb: 1 }}>
+          <Link href="/" style={{ color: "#0969da" }}>
+            {title}
+          </Link>
+        </Typography>
         <Typography variant="body2" color="text.secondary">
-          {post}
+          {body}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
