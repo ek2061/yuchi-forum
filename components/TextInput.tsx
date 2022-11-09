@@ -1,6 +1,7 @@
 import Box from "@mui/material/Box";
 import TextField, { BaseTextFieldProps } from "@mui/material/TextField";
 import { HorizontalStart } from "components";
+import React from "react";
 
 interface TextInputProps extends BaseTextFieldProps {
   icon?: JSX.Element;

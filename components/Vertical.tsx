@@ -1,4 +1,5 @@
 import Stack, { StackProps } from "@mui/material/Stack";
+import React from "react";
 
 const Vertical: React.FC<StackProps> = (props) => (
   <Stack direction="column" {...props}>
