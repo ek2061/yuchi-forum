@@ -1,4 +1,5 @@
 export * from "./ArticleCard";
+export * from "./BasicPage";
 export * from "./Horizontal";
 export * from "./Progress";
 export * from "./SearchInput";
