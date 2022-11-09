@@ -1,3 +1,4 @@
+import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { HorizontalCenter, VerticalCenter } from "components";
@@ -6,7 +7,7 @@ import Link from "next/link";
 
 const Error404 = () => {
   return (
-    <div style={{ height: "100vh" }}>
+    <Box sx={{ height: "100vh" }}>
       <Head>
         <title>404</title>
       </Head>
@@ -21,7 +22,7 @@ const Error404 = () => {
           </Button>
         </VerticalCenter>
       </HorizontalCenter>
-    </div>
+    </Box>
   );
 };
 
