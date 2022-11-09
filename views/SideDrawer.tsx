@@ -19,8 +19,8 @@ export const SideDrawer: React.FC<{}> = () => {
     <SwipeableDrawer
       anchor="left"
       open={sidedrawerOpen}
-      onClose={onOpen}
-      onOpen={onClose}
+      onOpen={onOpen}
+      onClose={onClose}
       swipeAreaWidth={56}
       disableSwipeToOpen={false}
       ModalProps={{
