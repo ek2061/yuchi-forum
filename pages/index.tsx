@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
-import { ArticleCard, HorizontalCenter } from "components";
+import { ArticleCard, HorizontalCenter, VerticalCenter } from "components";
 import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "styles/container.module.css";
@@ -35,17 +35,19 @@ const Home: NextPage = () => {
           <SidebarContainer>
             <Sidebar />
           </SidebarContainer>
-          <ArticleCard
-            postedBy="Yuchi"
-            postTime="a minute ago"
-            title="Spice 'n Easy Recipe Mixes"
-            body="This impressive paella is a perfect party dish and a fun meal to cook
+          <VerticalCenter spacing={2}>
+            <ArticleCard
+              postedBy="Yuchi"
+              postTime="a minute ago"
+              title="Spice 'n Easy Recipe Mixes"
+              body="This impressive paella is a perfect party dish and a fun meal to cook
           together with your guests. Add 1 cup of frozen peas along with the
           mussels, if you like."
-            like="5"
-            unlike="2"
-            comment="3"
-          />
+              like="5"
+              unlike="2"
+              comment="3"
+            />
+          </VerticalCenter>
           <HotTopic />
         </HorizontalCenter>
       </main>
