@@ -7,6 +7,7 @@ import styles from "styles/container.module.css";
 import { Header } from "views/Header";
 import { HotTopic } from "views/HotTopic";
 import { Sidebar } from "views/Sidebar";
+import { SideDrawer } from "views/SideDrawer";
 
 const SidebarContainer = styled(Box)(({ theme }) => ({
   display: "block",
@@ -50,6 +51,7 @@ const Home: NextPage = () => {
       </main>
 
       <footer></footer>
+      <SideDrawer />
     </div>
   );
 };

@@ -7,9 +7,12 @@ import { styled } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { SearchInput } from "components";
+import { useAppDispatch } from "hook/redux";
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "public/yuchi-forum-logo.svg";
+import React from "react";
+import { openSideDrawer } from "store/app";
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: "flex",
@@ -49,6 +52,10 @@ const StyledButton = styled(Button)(({ theme }) => ({
 }));
 
 export const Header: React.FC<{}> = () => {
+  const dispatch = useAppDispatch();
+
+  const onOpen = () => dispatch(openSideDrawer(true));
+
   return (
     <AppBar
       position="fixed"
@@ -119,6 +126,7 @@ export const Header: React.FC<{}> = () => {
           edge="start"
           color="inherit"
           sx={{ mx: 1 }}
+          onClick={onOpen}
         >
           <MenuIcon />
         </CollapsedButton>
