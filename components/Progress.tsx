@@ -1,8 +1,8 @@
 import CircularProgress, {
   CircularProgressProps,
 } from "@mui/material/CircularProgress";
+import { HorizontalCenter } from "components";
 import React from "react";
-import { HorizontalCenter } from "./Horizontal";
 
 export const Progress: React.FC<CircularProgressProps> = (props) => {
   return (
