@@ -54,16 +54,16 @@ export const ArticleCard: ArticleCardProps = ({
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <HorizontalEnd>
-          <Box sx={{ mx: "0.5rem" }}>
+        <HorizontalEnd spacing={1}>
+          <Box>
             <ThumbUpOffAltIcon />
             {like}
           </Box>
-          <Box sx={{ mx: "0.5rem" }}>
+          <Box>
             <ThumbDownOffAltIcon />
             {unlike}
           </Box>
-          <Box sx={{ mx: "0.5rem" }}>
+          <Box>
             <CommentIcon />
             {comment}
           </Box>
