@@ -1,6 +1,7 @@
 export * from "./ArticleCard";
 export * from "./ArticleContent";
 export * from "./BasicPage";
+export * from "./Comment";
 export * from "./Container";
 export * from "./Horizontal";
 export * from "./Progress";

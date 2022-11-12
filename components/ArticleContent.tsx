@@ -7,8 +7,16 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardHeader from "@mui/material/CardHeader";
+import CardMedia from "@mui/material/CardMedia";
+import Divider from "@mui/material/Divider";
+import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import { HorizontalStart, VerticalCenter } from "components";
+import {
+  Comment,
+  HorizontalStart,
+  VerticalCenter,
+  VerticalStart,
+} from "components";
 import React from "react";
 import { stringToColor } from "utils/palette";
 
@@ -35,7 +43,7 @@ export const ArticleContent: ArticleContentProps = ({
     <Card sx={{ px: "12px", py: "6px" }}>
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: stringToColor(postedBy) }} aria-label="recipe">
+          <Avatar sx={{ bgcolor: stringToColor(postedBy) }}>
             {postedBy[0]}
           </Avatar>
         }
@@ -49,6 +57,12 @@ export const ArticleContent: ArticleContentProps = ({
         <Typography variant="body1" color="text.secondary">
           {body}
         </Typography>
+        <CardMedia
+          component="img"
+          sx={{ height: 194 }}
+          image="https://mui.com/static/images/cards/paella.jpg"
+          alt="Paella dish"
+        />
       </CardContent>
       <CardActions disableSpacing>
         <VerticalCenter>
@@ -74,9 +88,35 @@ export const ArticleContent: ArticleContentProps = ({
               </Button>
             </Box>
           </HorizontalStart>
-          <Typography variant="subtitle1">共{comment}則留言</Typography>
         </VerticalCenter>
       </CardActions>
+      <Divider />
+      <CardContent sx={{ pb: "6px" }}>
+        <HorizontalStart spacing={2}>
+          <Avatar sx={{ bgcolor: stringToColor("User") }}>U</Avatar>
+          <TextField
+            variant="standard"
+            placeholder="Leave your comment"
+            sx={{ flexGrow: 1 }}
+          />
+          <Box sx={{ pb: "12px" }}>
+            <Button
+              variant="contained"
+              sx={{ borderRadius: "50px", height: "42px" }}
+            >
+              Submit
+            </Button>
+          </Box>
+        </HorizontalStart>
+      </CardContent>
+      <Divider />
+      <CardContent>
+        <VerticalStart spacing={1}>
+          <Comment postedBy="Feng" postTime="30 seconds ago" body="HAHA" />
+          <Divider sx={{ width: "100%" }} />
+          <Comment postedBy="Joe" postTime="35 seconds ago" body="HEHE" />
+        </VerticalStart>
+      </CardContent>
     </Card>
   );
 };
