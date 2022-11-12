@@ -1,20 +1,9 @@
-import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
+import { HotTopicContainer } from "components";
 import React from "react";
-
-const HotTopicContainer = styled(Box)(({ theme }) => ({
-  display: "block",
-  paddingLeft: "0.75rem",
-  paddingRight: "0.75rem",
-  flex: "0 0 auto",
-  width: "25%",
-  [theme.breakpoints.down("lg")]: {
-    display: "none",
-  },
-}));
 
 const StyledListItem = styled(ListItem)(({ theme }) => ({
   backgroundColor: "#f8f9fa",

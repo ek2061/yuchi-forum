@@ -6,7 +6,7 @@ import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { SearchInput } from "components";
+import { SearchContainer, SearchInput } from "components";
 import { useAppDispatch } from "hook/redux";
 import Image from "next/image";
 import Link from "next/link";
@@ -31,16 +31,6 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
 
 const CollapsedButton = styled(IconButton)(({ theme }) => ({
   [theme.breakpoints.up("md")]: {
-    display: "none",
-  },
-}));
-
-const SearchContainer = styled(Box)(({ theme }) => ({
-  display: "flex",
-  flexBasis: "auto",
-  flexGrow: 1,
-  alignItems: "center",
-  [theme.breakpoints.down("md")]: {
     display: "none",
   },
 }));

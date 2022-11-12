@@ -1,9 +1,9 @@
 import Box from "@mui/material/Box";
-import { styled } from "@mui/material/styles";
 import {
   ArticleCard,
   HorizontalCenter,
   MainContainer,
+  SidebarContainer,
   VerticalCenter,
 } from "components";
 import type { NextPage } from "next";
@@ -12,17 +12,6 @@ import { Header } from "views/Header";
 import { HotTopic } from "views/HotTopic";
 import { Sidebar } from "views/Sidebar";
 import { SideDrawer } from "views/SideDrawer";
-
-const SidebarContainer = styled(Box)(({ theme }) => ({
-  display: "block",
-  paddingLeft: "0.75rem",
-  paddingRight: "0.75rem",
-  marginLeft: "auto",
-  marginRight: "auto",
-  [theme.breakpoints.down("md")]: {
-    display: "none",
-  },
-}));
 
 const Home: NextPage = () => {
   return (

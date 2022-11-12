@@ -1,29 +1,11 @@
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import LockIcon from "@mui/icons-material/Lock";
-import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
-import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
-import { TextInput } from "components";
+import { RegisterFormContainer, TextInput } from "components";
 import Link from "next/link";
 import React from "react";
-
-const RegisterFormContainer = styled(Box)(({ theme }) => ({
-  marginLeft: "auto",
-  marginRight: "auto",
-  flex: "0 0 auto",
-  maxWidth: "406px",
-
-  borderRadius: "0.3rem",
-  padding: "1.5rem",
-  boxShadow: "0 0.125rem 0.25rem rgba(0,0,0,0.075)",
-  boxSizing: "border-box",
-  backgroundColor: "rgba(255,255,255,1.0)",
-  [theme.breakpoints.down("sm")]: {
-    width: "80%",
-  },
-}));
 
 export const SignUpForm: React.FC<{}> = () => {
   return (
