@@ -35,11 +35,7 @@ export const ArticleCard: ArticleCardProps = ({
   return (
     <Card>
       <CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            {postedBy[0]}
-          </Avatar>
-        }
+        avatar={<Avatar sx={{ bgcolor: red[500] }}>{postedBy[0]}</Avatar>}
         title={postedBy}
         subheader={postTime}
       ></CardHeader>
