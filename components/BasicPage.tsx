@@ -1,8 +1,7 @@
 import Box from "@mui/material/Box";
-import { HorizontalCenter, Progress } from "components";
+import { HorizontalCenter, MainContainer, Progress } from "components";
 import Head from "next/head";
 import React from "react";
-import styles from "styles/container.module.css";
 import { Header } from "views/Header";
 import { SideDrawer } from "views/SideDrawer";
 
@@ -28,12 +27,12 @@ export const BasicPage: BasicPageProps = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.container}>
+      <MainContainer component="main">
         <Header />
         <HorizontalCenter alignItems="start">
           <React.Suspense fallback={<Progress />}>{children}</React.Suspense>
         </HorizontalCenter>
-      </main>
+      </MainContainer>
 
       <footer></footer>
       <SideDrawer />

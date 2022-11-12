@@ -1,9 +1,13 @@
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
-import { ArticleCard, HorizontalCenter, VerticalCenter } from "components";
+import {
+  ArticleCard,
+  HorizontalCenter,
+  MainContainer,
+  VerticalCenter,
+} from "components";
 import type { NextPage } from "next";
 import Head from "next/head";
-import styles from "styles/container.module.css";
 import { Header } from "views/Header";
 import { HotTopic } from "views/HotTopic";
 import { Sidebar } from "views/Sidebar";
@@ -29,7 +33,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.container}>
+      <MainContainer component="main">
         <Header />
         <HorizontalCenter alignItems="start">
           <SidebarContainer>
@@ -50,7 +54,7 @@ const Home: NextPage = () => {
           </VerticalCenter>
           <HotTopic />
         </HorizontalCenter>
-      </main>
+      </MainContainer>
 
       <footer></footer>
       <SideDrawer />
