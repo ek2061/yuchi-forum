@@ -1,5 +1,6 @@
 import { ArticleContent, BasicPage } from "components";
 import type { NextPage } from "next";
+import { HotTopic } from "views/HotTopic";
 
 const ArticleId: NextPage = () => {
   return (
@@ -15,6 +16,7 @@ const ArticleId: NextPage = () => {
         unlike="2"
         comment="3"
       />
+      <HotTopic />
     </BasicPage>
   );
 };
