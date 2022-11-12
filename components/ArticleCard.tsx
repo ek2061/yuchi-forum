@@ -14,6 +14,7 @@ import Link from "next/link";
 import React from "react";
 
 type ArticleCardProps = React.FC<{
+  postId: string | number;
   postedBy: string;
   postTime: string;
   title: string;
@@ -24,6 +25,7 @@ type ArticleCardProps = React.FC<{
 }>;
 
 export const ArticleCard: ArticleCardProps = ({
+  postId,
   postedBy,
   postTime,
   title,
@@ -41,7 +43,7 @@ export const ArticleCard: ArticleCardProps = ({
       ></CardHeader>
       <CardContent sx={{ py: 0 }}>
         <Typography variant="h5" sx={{ mb: 1 }}>
-          <Link href="/" style={{ color: "#0969da" }}>
+          <Link href={`/p/${postId}`} style={{ color: "#0969da" }}>
             {title}
           </Link>
         </Typography>

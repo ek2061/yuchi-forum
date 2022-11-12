@@ -30,6 +30,7 @@ const Home: NextPage = () => {
           </SidebarContainer>
           <VerticalCenter spacing={2}>
             <ArticleCard
+              postId="0"
               postedBy="Yuchi"
               postTime="a minute ago"
               title="Spice 'n Easy Recipe Mixes"
