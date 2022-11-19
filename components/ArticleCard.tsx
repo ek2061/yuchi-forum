@@ -42,7 +42,7 @@ export const ArticleCard: ArticleCardProps = ({
         subheader={postTime}
       ></CardHeader>
       <CardContent sx={{ py: 0 }}>
-        <Typography variant="h5" sx={{ mb: 1 }}>
+        <Typography variant="h6" sx={{ mb: 0.5 }}>
           <Link href={`/p/${postId}`} style={{ color: "#0969da" }}>
             {title}
           </Link>
