@@ -47,7 +47,19 @@ export const ArticleCard: ArticleCardProps = ({
             {title}
           </Link>
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{
+            display: "-webkit-box",
+            WebkitLineClamp: 1,
+            WebkitBoxOrient: "vertical",
+            overflow: "hidden",
+            wordBreak: "break-word !important" as any,
+            overflowWrap: "break-word !important" as any,
+            hyphens: "auto !important" as any,
+          }}
+        >
           {body}
         </Typography>
       </CardContent>
