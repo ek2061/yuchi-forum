@@ -10,6 +10,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { Header } from "views/Header";
 import { HotTopic } from "views/HotTopic";
+import { PostDialog } from "views/PostDialog";
 import { Sidebar } from "views/Sidebar";
 import { SideDrawer } from "views/SideDrawer";
 
@@ -48,6 +49,7 @@ const Home: NextPage = () => {
 
       <footer></footer>
       <SideDrawer />
+      <PostDialog />
     </Box>
   );
 };

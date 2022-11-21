@@ -1,8 +1,10 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { appSlice } from "./app";
+import { postSlice } from "./post";
 
 const reducer = combineReducers({
   app: appSlice.reducer,
+  post: postSlice.reducer,
 });
 
 // const errorMiddleware = (api) => (next) => (action) => {
