@@ -36,7 +36,7 @@ export const SideDrawer: React.FC<{}> = () => {
               justifyContent: "flex-end",
             }}
           >
-            <IconButton aria-label="delete" size="small" onClick={onClose}>
+            <IconButton aria-label="close" size="small" onClick={onClose}>
               <CloseIcon fontSize="small" />
             </IconButton>
           </Box>
