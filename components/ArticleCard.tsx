@@ -20,7 +20,7 @@ type ArticleCardProps = React.FC<{
   title: string;
   body: string;
   like: string | number;
-  unlike: string | number;
+  dislike: string | number;
   comment: string | number;
 }>;
 
@@ -31,7 +31,7 @@ export const ArticleCard: ArticleCardProps = ({
   title,
   body,
   like,
-  unlike,
+  dislike,
   comment,
 }) => {
   return (
@@ -71,7 +71,7 @@ export const ArticleCard: ArticleCardProps = ({
           </Box>
           <Box>
             <ThumbDownOffAltIcon />
-            {unlike}
+            {dislike}
           </Box>
           <Box>
             <CommentIcon />

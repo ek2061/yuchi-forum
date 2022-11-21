@@ -26,7 +26,7 @@ type ArticleContentProps = React.FC<{
   title: string;
   body: string;
   like: string | number;
-  unlike: string | number;
+  dislike: string | number;
   comment: string | number;
 }>;
 
@@ -36,7 +36,7 @@ export const ArticleContent: ArticleContentProps = ({
   title,
   body,
   like,
-  unlike,
+  dislike,
   comment,
 }) => {
   return (
@@ -84,7 +84,7 @@ export const ArticleContent: ArticleContentProps = ({
                 color="inherit"
                 size="large"
               >
-                {unlike}
+                {dislike}
               </Button>
             </Box>
           </HorizontalStart>

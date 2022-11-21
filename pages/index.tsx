@@ -39,7 +39,7 @@ const Home: NextPage = () => {
           together with your guests. Add 1 cup of frozen peas along with the
           mussels, if you like."
               like="5"
-              unlike="2"
+              dislike="2"
               comment="3"
             />
           </VerticalCenter>
