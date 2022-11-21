@@ -14,20 +14,29 @@ import Typography from "@mui/material/Typography";
 import { HorizontalBetween, HorizontalStart, VerticalStart } from "components";
 import { useAppDispatch, useAppSelector } from "hook/redux";
 import React from "react";
-import { closeAndResetDialog } from "store/post";
+import { closeAndResetDialog, setForm } from "store/post";
 
 const PostForm: React.FC<{}> = () => {
+  const dispatch = useAppDispatch();
+  const { form } = useAppSelector((state) => state.post);
+
   return (
     <VerticalStart spacing={5}>
       <Input
         placeholder="尼的超廢標題"
         inputProps={{ "aria-label": "post title" }}
         fullWidth
+        value={form.title}
+        onChange={(e) => dispatch(setForm({ ...form, title: e.target.value }))}
       />
       <TextField
         placeholder="今天有什麼廢文?"
         inputProps={{ "aria-label": "post content" }}
         fullWidth
+        value={form.content}
+        onChange={(e) =>
+          dispatch(setForm({ ...form, content: e.target.value }))
+        }
         multiline
         minRows={6}
       />

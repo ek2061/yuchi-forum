@@ -22,7 +22,14 @@ export const postSlice = createSlice({
       state.open = initialState.open;
       state.form = initialState.form;
     },
+    setForm: (state, action) => {
+      const { title, content } = action.payload;
+      state.form = {
+        title: title ?? "",
+        content: content ?? "",
+      };
+    },
   },
 });
 
-export const { openDialog, closeAndResetDialog } = postSlice.actions;
+export const { openDialog, closeAndResetDialog, setForm } = postSlice.actions;
