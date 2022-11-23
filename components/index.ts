@@ -4,6 +4,7 @@ export * from "./BasicPage";
 export * from "./Comment";
 export * from "./Container";
 export * from "./Horizontal";
+export * from "./Modal";
 export * from "./Progress";
 export * from "./SearchInput";
 export * from "./Suspense";
