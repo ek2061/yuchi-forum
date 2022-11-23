@@ -8,6 +8,10 @@ export const postApi = apiSlice.injectEndpoints({
       query: ({ pid }) => ({ url: `${path}/${pid}` }),
       providesTags: (result) => [{ type: "Post", id: result.pid }],
     }),
+    listPost: builder.query({
+      query: ({ limit }) => ({ url: `${path}?limit=${limit}` }),
+      providesTags: () => [{ type: "Post", id: "LIST" }],
+    }),
     createPost: builder.mutation({
       query: (body) => ({
         url: path,
@@ -30,5 +34,6 @@ export const postApi = apiSlice.injectEndpoints({
 export const {
   useCreatePostMutation,
   useEditPostMutation,
+  useListPostQuery,
   useRetrievePostQuery,
 } = postApi;

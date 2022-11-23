@@ -3,11 +3,13 @@ import {
   ArticleCard,
   HorizontalCenter,
   MainContainer,
+  Progress,
   SidebarContainer,
   VerticalCenter,
 } from "components";
 import type { NextPage } from "next";
 import Head from "next/head";
+import { useListPostQuery } from "store/post";
 import { Header } from "views/Header";
 import { HotTopic } from "views/HotTopic";
 import { PostDialog } from "views/PostDialog";
@@ -15,6 +17,8 @@ import { Sidebar } from "views/Sidebar";
 import { SideDrawer } from "views/SideDrawer";
 
 const Home: NextPage = () => {
+  const { data = [], isLoading } = useListPostQuery({ limit: 5 });
+
   return (
     <Box>
       <Head>
@@ -30,18 +34,32 @@ const Home: NextPage = () => {
             <Sidebar />
           </SidebarContainer>
           <VerticalCenter spacing={2}>
-            <ArticleCard
-              postId="0"
-              postedBy="Yuchi"
-              postTime="a minute ago"
-              title="Spice 'n Easy Recipe Mixes"
-              body="This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the
-          mussels, if you like."
-              like="5"
-              dislike="2"
-              comment="3"
-            />
+            {isLoading ? (
+              <Progress />
+            ) : (
+              data.map(
+                (v: {
+                  pid: string;
+                  createdat: string;
+                  title: string;
+                  excerpt: string;
+                  like: string | number;
+                  dislike: string | number;
+                }) => (
+                  <ArticleCard
+                    key={v.pid}
+                    postId={v.pid}
+                    postedBy="Yuchi"
+                    postTime={v.createdat}
+                    title={v.title}
+                    body={v.excerpt}
+                    like={v.like}
+                    dislike={v.dislike}
+                    comment="3"
+                  />
+                )
+              )
+            )}
           </VerticalCenter>
           <HotTopic />
         </HorizontalCenter>

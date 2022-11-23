@@ -1,6 +1,7 @@
 export {
   useCreatePostMutation,
   useEditPostMutation,
+  useListPostQuery,
   useRetrievePostQuery,
 } from "./post.api";
 export {
