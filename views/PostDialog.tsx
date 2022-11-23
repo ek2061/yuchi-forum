@@ -1,20 +1,17 @@
-import CloseIcon from "@mui/icons-material/Close";
 import CreateIcon from "@mui/icons-material/Create";
 import ImageIcon from "@mui/icons-material/Image";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
 import Input from "@mui/material/Input";
 import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
-import { HorizontalBetween, HorizontalStart, VerticalStart } from "components";
+import { Modal, VerticalStart } from "components";
 import { useAppDispatch, useAppSelector } from "hook/redux";
 import React from "react";
-import { closeAndResetDialog, setForm } from "store/post";
+import {
+  closeAndResetDialog,
+  setForm,
+  useCreatePostMutation,
+} from "store/post";
 
 const PostForm: React.FC<{}> = () => {
   const dispatch = useAppDispatch();
@@ -44,53 +41,66 @@ const PostForm: React.FC<{}> = () => {
   );
 };
 
+const PostAction: React.FC<{}> = () => {
+  const dispatch = useAppDispatch();
+  const { form } = useAppSelector((state) => state.post);
+
+  const [createPost, { isLoading, isSuccess }] = useCreatePostMutation();
+
+  const onPost = () => {
+    createPost({ uid: 2, title: form.title, content: form.content });
+  };
+
+  const [block, setBlock] = React.useState(false);
+  React.useEffect(() => {
+    if (isLoading || form.title === "" || form.content === "") setBlock(true);
+    else setBlock(false);
+  }, [form.content, form.title, isLoading]);
+
+  React.useEffect(() => {
+    if (isSuccess) dispatch(closeAndResetDialog());
+  }, [dispatch, isSuccess]);
+
+  return (
+    <>
+      <IconButton disabled={isLoading}>
+        <ImageIcon />
+      </IconButton>
+      <Button variant="contained" onClick={onPost} disabled={block}>
+        發廢文
+      </Button>
+    </>
+  );
+};
+
 export const PostDialog: React.FC<{}> = () => {
   const dispatch = useAppDispatch();
   const { open } = useAppSelector((state) => state.post);
 
-  const closeDialog = () => dispatch(closeAndResetDialog());
+  const closeIconEvent = () => dispatch(closeAndResetDialog());
   const onClose = (
     event: {},
     reason: "backdropClick" | "escapeKeyDown" | "closeButtonClick"
   ) => {
     if (reason && reason === "backdropClick") return;
-    closeDialog();
+    closeIconEvent();
   };
+
   return (
-    <Dialog
+    <Modal
       open={open}
       onClose={onClose}
-      maxWidth="md"
-      fullWidth
+      closeIconEvent={closeIconEvent}
       sx={{
         "& .MuiDialog-container": {
           alignItems: "flex-start",
         },
       }}
       PaperProps={{ sx: { mt: "80px" } }}
-    >
-      <DialogTitle>
-        <HorizontalBetween>
-          <HorizontalStart>
-            <Avatar sx={{ width: "35px", height: "35px", mr: 1 }}>
-              <CreateIcon />
-            </Avatar>
-            <Typography variant="h4">發一篇廢文</Typography>
-          </HorizontalStart>
-          <IconButton onClick={closeDialog}>
-            <CloseIcon />
-          </IconButton>
-        </HorizontalBetween>
-      </DialogTitle>
-      <DialogContent>
-        <PostForm />
-      </DialogContent>
-      <DialogActions>
-        <IconButton>
-          <ImageIcon />
-        </IconButton>
-        <Button variant="contained">發廢文</Button>
-      </DialogActions>
-    </Dialog>
+      icon={<CreateIcon />}
+      title="發一篇廢文"
+      content={<PostForm />}
+      action={<PostAction />}
+    />
   );
 };
