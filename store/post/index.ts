@@ -1,4 +1,9 @@
 export {
+  useCreatePostMutation,
+  useEditPostMutation,
+  useRetrievePostQuery,
+} from "./post.api";
+export {
   closeAndResetDialog,
   openDialog,
   postSlice,
