@@ -7,11 +7,11 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardHeader from "@mui/material/CardHeader";
-import { red } from "@mui/material/colors";
 import Typography from "@mui/material/Typography";
 import { HorizontalEnd } from "components";
 import Link from "next/link";
 import React from "react";
+import { stringToColor } from "utils/palette";
 
 type ArticleCardProps = React.FC<{
   postId: string | number;
@@ -35,9 +35,13 @@ export const ArticleCard: ArticleCardProps = ({
   comment,
 }) => {
   return (
-    <Card>
+    <Card sx={{ width: "100%" }}>
       <CardHeader
-        avatar={<Avatar sx={{ bgcolor: red[500] }}>{postedBy[0]}</Avatar>}
+        avatar={
+          <Avatar sx={{ bgcolor: stringToColor(postedBy) }}>
+            {postedBy[0]}
+          </Avatar>
+        }
         title={postedBy}
         subheader={postTime}
       ></CardHeader>
