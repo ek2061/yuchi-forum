@@ -40,7 +40,7 @@ export const ArticleContent: ArticleContentProps = ({
   comment,
 }) => {
   return (
-    <Card sx={{ px: "12px", py: "6px" }}>
+    <Card sx={{ px: "12px", py: "6px", width: "100%" }}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: stringToColor(postedBy) }}>
