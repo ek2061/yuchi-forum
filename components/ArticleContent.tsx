@@ -16,6 +16,7 @@ import {
   VerticalCenter,
   VerticalStart,
 } from "components";
+import { format } from "date-fns";
 import React from "react";
 import { stringToColor } from "utils/palette";
 
@@ -38,6 +39,9 @@ export const ArticleContent: ArticleContentProps = ({
   dislike,
   comment,
 }) => {
+  let formatDate = "";
+  if (postTime) formatDate = format(new Date(postTime), "PPpp");
+
   return (
     <Card sx={{ px: "12px", py: "6px", width: "100%" }}>
       <CardHeader
@@ -47,7 +51,7 @@ export const ArticleContent: ArticleContentProps = ({
           </Avatar>
         }
         title={postedBy}
-        subheader={postTime}
+        subheader={formatDate}
       ></CardHeader>
       <CardContent>
         <Typography variant="h4" sx={{ mb: 1 }}>
