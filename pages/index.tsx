@@ -16,6 +16,38 @@ import { PostDialog } from "views/PostDialog";
 import { Sidebar } from "views/Sidebar";
 import { SideDrawer } from "views/SideDrawer";
 
+const Articles: React.FC<{
+  isLoading: boolean;
+  articles: Array<{
+    pid: string;
+    createdat: string;
+    title: string;
+    excerpt: string;
+    like: string | number;
+    dislike: string | number;
+  }>;
+}> = ({ isLoading, articles }) => {
+  if (isLoading) return <Progress />;
+  if (articles.length === 0) return <>No Articles</>;
+  return (
+    <>
+      {articles.map((v) => (
+        <ArticleCard
+          key={v.pid}
+          postId={v.pid}
+          postedBy="Yuchi"
+          postTime={v.createdat}
+          title={v.title}
+          body={v.excerpt}
+          like={v.like}
+          dislike={v.dislike}
+          comment="0"
+        />
+      ))}
+    </>
+  );
+};
+
 const Home: NextPage = () => {
   const { data = [], isLoading } = useListPostQuery({ limit: 5 });
 
@@ -34,32 +66,7 @@ const Home: NextPage = () => {
             <Sidebar />
           </SidebarContainer>
           <VerticalCenter spacing={2}>
-            {isLoading ? (
-              <Progress />
-            ) : (
-              data.map(
-                (v: {
-                  pid: string;
-                  createdat: string;
-                  title: string;
-                  excerpt: string;
-                  like: string | number;
-                  dislike: string | number;
-                }) => (
-                  <ArticleCard
-                    key={v.pid}
-                    postId={v.pid}
-                    postedBy="Yuchi"
-                    postTime={v.createdat}
-                    title={v.title}
-                    body={v.excerpt}
-                    like={v.like}
-                    dislike={v.dislike}
-                    comment="3"
-                  />
-                )
-              )
-            )}
+            <Articles isLoading={isLoading} articles={data} />
           </VerticalCenter>
           <HotTopic />
         </HorizontalCenter>
