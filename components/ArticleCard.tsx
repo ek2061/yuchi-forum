@@ -9,7 +9,7 @@ import CardContent from "@mui/material/CardContent";
 import CardHeader from "@mui/material/CardHeader";
 import Typography from "@mui/material/Typography";
 import { HorizontalEnd } from "components";
-import { formatDistance } from "date-fns";
+import { format, formatDistanceToNow } from "date-fns";
 import Link from "next/link";
 import React from "react";
 import { stringToColor } from "utils/palette";
@@ -35,10 +35,19 @@ export const ArticleCard: ArticleCardProps = ({
   dislike,
   comment,
 }) => {
-  const distance = formatDistance(new Date(postTime), new Date(), {
-    includeSeconds: true,
-    addSuffix: true,
-  });
+  let formatDate = "";
+  if (postTime) {
+    const fiveDays = 1000 * 3600 * 24 * 5;
+    if (Date.now() - new Date(postTime).getTime() > fiveDays) {
+      formatDate = format(new Date(postTime), "PPpp");
+    } else {
+      formatDate = formatDistanceToNow(new Date(postTime), {
+        includeSeconds: true,
+        addSuffix: true,
+      });
+    }
+  }
+
   return (
     <Card sx={{ width: "100%" }}>
       <CardHeader
@@ -48,7 +57,7 @@ export const ArticleCard: ArticleCardProps = ({
           </Avatar>
         }
         title={postedBy}
-        subheader={distance}
+        subheader={formatDate}
       ></CardHeader>
       <CardContent sx={{ py: 0 }}>
         <Typography variant="h6" sx={{ mb: 0.5 }}>
