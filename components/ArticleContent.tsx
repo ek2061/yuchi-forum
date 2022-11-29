@@ -7,7 +7,6 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardHeader from "@mui/material/CardHeader";
-import CardMedia from "@mui/material/CardMedia";
 import Divider from "@mui/material/Divider";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
@@ -17,6 +16,7 @@ import {
   VerticalCenter,
   VerticalStart,
 } from "components";
+import { format } from "date-fns";
 import React from "react";
 import { stringToColor } from "utils/palette";
 
@@ -39,6 +39,9 @@ export const ArticleContent: ArticleContentProps = ({
   dislike,
   comment,
 }) => {
+  let formatDate = "";
+  if (postTime) formatDate = format(new Date(postTime), "PPpp");
+
   return (
     <Card sx={{ px: "12px", py: "6px", width: "100%" }}>
       <CardHeader
@@ -48,7 +51,7 @@ export const ArticleContent: ArticleContentProps = ({
           </Avatar>
         }
         title={postedBy}
-        subheader={postTime}
+        subheader={formatDate}
       ></CardHeader>
       <CardContent>
         <Typography variant="h4" sx={{ mb: 1 }}>
@@ -57,12 +60,6 @@ export const ArticleContent: ArticleContentProps = ({
         <Typography variant="body1" color="text.secondary">
           {body}
         </Typography>
-        <CardMedia
-          component="img"
-          sx={{ height: 194 }}
-          image="https://mui.com/static/images/cards/paella.jpg"
-          alt="Paella dish"
-        />
       </CardContent>
       <CardActions disableSpacing>
         <VerticalCenter>

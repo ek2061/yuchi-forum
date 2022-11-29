@@ -23,5 +23,25 @@ export const light = createTheme({
         },
       },
     },
+    MuiCssBaseline: {
+      styleOverrides: {
+        html: {
+          "*::-webkit-scrollbar": {
+            width: "5px",
+            height: "5px",
+          },
+          "*::-webkit-scrollbar-track": {
+            webkitBorderRadius: "10px",
+            borderRadius: "10px",
+            margin: "0",
+          },
+          "*::-webkit-scrollbar-thumb": {
+            webkitBorderRadius: "4px",
+            borderRadius: "4px",
+            background: "#737476",
+          },
+        },
+      },
+    },
   },
 });

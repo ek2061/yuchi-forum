@@ -1,20 +1,30 @@
-import { ArticleContent, BasicPage } from "components";
+import { ArticleContent, BasicPage, Progress } from "components";
 import type { NextPage } from "next";
+import { useRouter } from "next/router";
+import { useRetrievePostQuery } from "store/post";
 import { HotTopic } from "views/HotTopic";
 
 const ArticleId: NextPage = () => {
+  const router = useRouter();
+  const { articleId } = router.query;
+
+  const { data = {} } = useRetrievePostQuery(
+    { pid: articleId },
+    { skip: !articleId }
+  );
+
+  if (!articleId) return <Progress />;
+
   return (
     <BasicPage>
       <ArticleContent
         postedBy="Yuchi"
-        postTime="a minute ago"
-        title="Spice 'n Easy Recipe Mixes"
-        body="This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the
-          mussels, if you like."
-        like="5"
-        dislike="2"
-        comment="3"
+        postTime={data.createdat}
+        title={data.title}
+        body={data.content}
+        like={data.like}
+        dislike={data.dislike}
+        comment="0"
       />
       <HotTopic />
     </BasicPage>
