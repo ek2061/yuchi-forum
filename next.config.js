@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   env: {
-    YUCHI_API: "http://localhost:8000/api",
+    YUCHI_API: "https://yuchi-forum-backend.fly.dev/api",
   },
 };
 
