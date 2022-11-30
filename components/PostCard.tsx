@@ -14,7 +14,7 @@ import Link from "next/link";
 import React from "react";
 import { stringToColor } from "utils/palette";
 
-type ArticleCardProps = React.FC<{
+type PostCardProps = React.FC<{
   postId: string | number;
   postedBy: string;
   postTime: string;
@@ -25,7 +25,7 @@ type ArticleCardProps = React.FC<{
   comment: string | number;
 }>;
 
-export const ArticleCard: ArticleCardProps = ({
+export const PostCard: PostCardProps = ({
   postId,
   postedBy,
   postTime,
