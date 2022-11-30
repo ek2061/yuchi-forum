@@ -31,7 +31,7 @@ export const BasicPage: BasicPageProps = ({
         <meta property="og:description" content="廢文製造機" />
         <meta
           property="og:image"
-          content="https://yuchi-forum-demo.netlify.app/yuchi-forum-logo.svg"
+          content="https://yuchi-forum-demo.netlify.app/yuchi-forum-logo.png"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
