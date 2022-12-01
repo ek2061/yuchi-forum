@@ -1,34 +1,30 @@
-import { ArticleContent, BasicPage, Progress } from "components";
+import { BasicPage, PostContent, Progress } from "components";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useRetrievePostQuery } from "store/post";
 import { HotTopic } from "views/HotTopic";
 
-const ArticleId: NextPage = () => {
+const PId: NextPage = () => {
   const router = useRouter();
-  const { articleId } = router.query;
+  const { pid } = router.query;
 
-  const { data = {} } = useRetrievePostQuery(
-    { pid: articleId },
-    { skip: !articleId }
-  );
+  const { data = {} } = useRetrievePostQuery({ pid }, { skip: !pid });
 
-  if (!articleId) return <Progress />;
+  if (!pid) return <Progress />;
 
   return (
     <BasicPage>
-      <ArticleContent
+      <PostContent
         postedBy="Yuchi"
         postTime={data.createdat}
         title={data.title}
         body={data.content}
         like={data.like}
         dislike={data.dislike}
-        comment="0"
       />
       <HotTopic />
     </BasicPage>
   );
 };
 
-export default ArticleId;
+export default PId;

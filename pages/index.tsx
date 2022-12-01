@@ -1,6 +1,6 @@
 import {
-  ArticleCard,
   BasicPage,
+  PostCard,
   Progress,
   SidebarContainer,
   VerticalCenter,
@@ -11,9 +11,9 @@ import { HotTopic } from "views/HotTopic";
 import { PostDialog } from "views/PostDialog";
 import { Sidebar } from "views/Sidebar";
 
-const Articles: React.FC<{
+const Posts: React.FC<{
   isLoading: boolean;
-  articles: Array<{
+  posts: Array<{
     pid: string;
     createdat: string;
     title: string;
@@ -21,13 +21,13 @@ const Articles: React.FC<{
     like: string | number;
     dislike: string | number;
   }>;
-}> = ({ isLoading, articles }) => {
+}> = ({ isLoading, posts }) => {
   if (isLoading) return <Progress />;
-  if (articles.length === 0) return <>No Articles</>;
+  if (posts.length === 0) return <>No Posts</>;
   return (
     <>
-      {articles.map((v) => (
-        <ArticleCard
+      {posts.map((v) => (
+        <PostCard
           key={v.pid}
           postId={v.pid}
           postedBy="Yuchi"
@@ -52,7 +52,7 @@ const Home: NextPage = () => {
         <Sidebar />
       </SidebarContainer>
       <VerticalCenter spacing={2}>
-        <Articles isLoading={isLoading} articles={data} />
+        <Posts isLoading={isLoading} posts={data} />
       </VerticalCenter>
       <HotTopic />
       <PostDialog />

@@ -20,24 +20,22 @@ import { format } from "date-fns";
 import React from "react";
 import { stringToColor } from "utils/palette";
 
-type ArticleContentProps = React.FC<{
+interface PostContentProps {
   postedBy: string;
   postTime: string;
   title: string;
   body: string;
   like: string | number;
   dislike: string | number;
-  comment: string | number;
-}>;
+}
 
-export const ArticleContent: ArticleContentProps = ({
+export const PostContent: React.FC<PostContentProps> = ({
   postedBy,
   postTime,
   title,
   body,
   like,
   dislike,
-  comment,
 }) => {
   let formatDate = "";
   if (postTime) formatDate = format(new Date(postTime), "PPpp");
@@ -57,8 +55,15 @@ export const ArticleContent: ArticleContentProps = ({
         <Typography variant="h4" sx={{ mb: 1 }}>
           {title}
         </Typography>
-        <Typography variant="body1" color="text.secondary">
-          {body}
+        <Typography
+          variant="body1"
+          whiteSpace="pre-line"
+          color="text.secondary"
+        >
+          {typeof body === "string" &&
+            body.split("\n").map((item, idx) => {
+              return <React.Fragment key={idx}>{item + "\n"}</React.Fragment>;
+            })}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>

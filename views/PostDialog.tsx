@@ -51,7 +51,7 @@ const PostAction: React.FC<{}> = () => {
     createPost({ uid: 2, title: form.title, content: form.content });
   };
 
-  const [block, setBlock] = React.useState(false);
+  const [block, setBlock] = React.useState<boolean>(false);
   React.useEffect(() => {
     if (isLoading || form.title === "" || form.content === "") setBlock(true);
     else setBlock(false);
