@@ -57,8 +57,15 @@ export const PostContent: PostContentProps = ({
         <Typography variant="h4" sx={{ mb: 1 }}>
           {title}
         </Typography>
-        <Typography variant="body1" color="text.secondary">
-          {body}
+        <Typography
+          variant="body1"
+          whiteSpace="pre-line"
+          color="text.secondary"
+        >
+          {typeof body === "string" &&
+            body.split("\n").map((item, idx) => {
+              return <React.Fragment key={idx}>{item + "\n"}</React.Fragment>;
+            })}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
