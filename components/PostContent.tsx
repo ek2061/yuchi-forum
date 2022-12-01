@@ -27,7 +27,6 @@ interface PostContentProps {
   body: string;
   like: string | number;
   dislike: string | number;
-  comment: string | number;
 }
 
 export const PostContent: React.FC<PostContentProps> = ({
@@ -37,7 +36,6 @@ export const PostContent: React.FC<PostContentProps> = ({
   body,
   like,
   dislike,
-  comment,
 }) => {
   let formatDate = "";
   if (postTime) formatDate = format(new Date(postTime), "PPpp");

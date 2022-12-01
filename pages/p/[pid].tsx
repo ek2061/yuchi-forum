@@ -21,7 +21,6 @@ const PId: NextPage = () => {
         body={data.content}
         like={data.like}
         dislike={data.dislike}
-        comment="0"
       />
       <HotTopic />
     </BasicPage>
