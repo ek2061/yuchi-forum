@@ -4,13 +4,17 @@ import { HorizontalStart, VerticalCenter } from "components";
 import React from "react";
 import { stringToColor } from "utils/palette";
 
-type CommentProps = React.FC<{
+interface CommentProps {
   postedBy: string;
   postTime: string;
   body: string;
-}>;
+}
 
-export const Comment: CommentProps = ({ postedBy, postTime, body }) => {
+export const Comment: React.FC<CommentProps> = ({
+  postedBy,
+  postTime,
+  body,
+}) => {
   return (
     <HorizontalStart spacing={2}>
       <Avatar sx={{ bgcolor: stringToColor(postedBy) }}>{postedBy[0]}</Avatar>

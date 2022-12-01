@@ -20,7 +20,7 @@ import { format } from "date-fns";
 import React from "react";
 import { stringToColor } from "utils/palette";
 
-type PostContentProps = React.FC<{
+interface PostContentProps {
   postedBy: string;
   postTime: string;
   title: string;
@@ -28,9 +28,9 @@ type PostContentProps = React.FC<{
   like: string | number;
   dislike: string | number;
   comment: string | number;
-}>;
+}
 
-export const PostContent: PostContentProps = ({
+export const PostContent: React.FC<PostContentProps> = ({
   postedBy,
   postTime,
   title,
