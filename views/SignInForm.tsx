@@ -4,10 +4,10 @@ import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 import { HorizontalEnd, RegisterFormContainer, TextInput } from "components";
+import { NextPage } from "next";
 import Link from "next/link";
-import React from "react";
 
-export const SignInForm: React.FC<{}> = () => {
+export const SignInForm: NextPage = () => {
   return (
     <RegisterFormContainer component="form">
       <Typography variant="h4" align="center" sx={{ mb: "1rem" }}>
