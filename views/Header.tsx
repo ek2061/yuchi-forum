@@ -96,18 +96,7 @@ export const Header: React.FC<{}> = () => {
               }}
             />
           </Box>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{
-              display: {
-                xs: "none",
-                sm: "block",
-              },
-              ml: "0.5rem",
-            }}
-          >
+          <Typography variant="h6" noWrap component="div" sx={{ ml: "0.5rem" }}>
             yuchi forum
           </Typography>
         </Link>
