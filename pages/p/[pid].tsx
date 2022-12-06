@@ -1,19 +1,20 @@
-import { BasicPage, PostContent, Progress } from "components";
-import type { NextPage } from "next";
-import { useRouter } from "next/router";
-import { useRetrievePostQuery } from "store/post";
+import { BasicPage, PostContent } from "components";
+import type { GetServerSideProps, NextPage } from "next";
+import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import { HotTopic } from "views/HotTopic";
 
-const PId: NextPage = () => {
-  const router = useRouter();
-  const { pid } = router.query;
+interface PostContentProps {
+  uid: string;
+  createdat: string;
+  title: string;
+  content: string;
+  like: string | number;
+  dislike: string | number;
+}
 
-  const { data = {} } = useRetrievePostQuery({ pid }, { skip: !pid });
-
-  if (!pid) return <Progress />;
-
+const PId: NextPage<PostContentProps> = (data) => {
   return (
-    <BasicPage>
+    <BasicPage suspense={false}>
       <PostContent
         postedBy="Yuchi"
         postTime={data.createdat}
@@ -28,3 +29,15 @@ const PId: NextPage = () => {
 };
 
 export default PId;
+
+export const getServerSideProps: GetServerSideProps<Params> = async ({
+  params,
+}) => {
+  try {
+    const res = await fetch(`${process.env.YUCHI_API}/post/${params?.pid}`);
+    const data = await res?.json();
+    return { props: data ?? {} };
+  } catch (error) {
+    return { notFound: true };
+  }
+};
