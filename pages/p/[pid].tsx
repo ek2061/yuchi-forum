@@ -1,4 +1,11 @@
-import { BasicPage, PostContent } from "components";
+import Card from "@mui/material/Card";
+import Divider from "@mui/material/Divider";
+import {
+  BasicPage,
+  CommentContent,
+  LeaveComment,
+  PostContent,
+} from "components";
 import type { GetServerSideProps, NextPage } from "next";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import { HotTopic } from "views/HotTopic";
@@ -15,14 +22,20 @@ interface PostContentProps {
 const PId: NextPage<PostContentProps> = (data) => {
   return (
     <BasicPage>
-      <PostContent
-        postedBy="Yuchi"
-        postTime={data.createdat}
-        title={data.title}
-        body={data.content}
-        like={data.like}
-        dislike={data.dislike}
-      />
+      <Card sx={{ px: "12px", py: "6px", width: "100%" }}>
+        <PostContent
+          postedBy="Yuchi"
+          postTime={data.createdat}
+          title={data.title}
+          body={data.content}
+          like={data.like}
+          dislike={data.dislike}
+        />
+        <Divider />
+        <LeaveComment />
+        <Divider />
+        <CommentContent />
+      </Card>
       <HotTopic />
     </BasicPage>
   );
