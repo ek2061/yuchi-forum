@@ -11,6 +11,7 @@ import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import { HotTopic } from "views/HotTopic";
 
 interface PostContentProps {
+  pid: number;
   uid: string;
   createdat: string;
   title: string;
@@ -33,8 +34,7 @@ const PId: NextPage<PostContentProps> = (data) => {
         />
         <Divider />
         <LeaveComment />
-        <Divider />
-        <CommentContent />
+        <CommentContent pid={data.pid} />
       </Card>
       <HotTopic />
     </BasicPage>
