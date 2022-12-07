@@ -14,7 +14,7 @@ interface PostContentProps {
 
 const PId: NextPage<PostContentProps> = (data) => {
   return (
-    <BasicPage suspense={false}>
+    <BasicPage>
       <PostContent
         postedBy="Yuchi"
         postTime={data.createdat}
@@ -36,7 +36,8 @@ export const getServerSideProps: GetServerSideProps<Params> = async ({
   try {
     const res = await fetch(`${process.env.YUCHI_API}/post/${params?.pid}`);
     const data = await res?.json();
-    return { props: data ?? {} };
+    if (!data) return { notFound: true };
+    return { props: data };
   } catch (error) {
     return { notFound: true };
   }

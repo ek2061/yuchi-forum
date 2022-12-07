@@ -47,7 +47,7 @@ const Home: NextPage = () => {
   const { data = [], isLoading } = useListPostQuery({ limit: 5 });
 
   return (
-    <BasicPage suspense={false}>
+    <BasicPage>
       <SidebarContainer>
         <Sidebar />
       </SidebarContainer>
