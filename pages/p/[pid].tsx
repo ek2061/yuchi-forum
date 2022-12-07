@@ -33,7 +33,7 @@ const PId: NextPage<PostContentProps> = (data) => {
           dislike={data.dislike}
         />
         <Divider />
-        <LeaveComment />
+        <LeaveComment pid={data.pid} />
         <CommentContent pid={data.pid} />
       </Card>
       <HotTopic />
