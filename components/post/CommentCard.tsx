@@ -4,13 +4,13 @@ import { HorizontalStart, VerticalCenter } from "components";
 import React from "react";
 import { stringToColor } from "utils/palette";
 
-interface CommentProps {
+interface CommentCardProps {
   postedBy: string;
   postTime: string;
   body: string;
 }
 
-export const Comment: React.FC<CommentProps> = ({
+export const CommentCard: React.FC<CommentCardProps> = ({
   postedBy,
   postTime,
   body,
