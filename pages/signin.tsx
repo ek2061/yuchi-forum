@@ -14,7 +14,7 @@ import { useAppDispatch, useAppSelector } from "hook/redux";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { setForm } from "store/signin";
+import { setForm, useLoginMutation } from "store/signin";
 import { Header } from "views/Header";
 
 const SignInForm: NextPage<{
@@ -24,7 +24,11 @@ const SignInForm: NextPage<{
   };
 }> = ({ form }) => {
   const dispatch = useAppDispatch();
-  const onSubmit = () => console.log(form);
+  const [login] = useLoginMutation();
+  const onSubmit = async () => {
+    const res = await login(form);
+    console.log(res);
+  };
 
   return (
     <RegisterFormContainer component="form">
