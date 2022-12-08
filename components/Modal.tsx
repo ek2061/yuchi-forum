@@ -10,10 +10,15 @@ import { HorizontalBetween, HorizontalStart } from "components";
 import React from "react";
 
 interface ModalProps extends DialogProps {
-  icon?: JSX.Element;
+  open: boolean;
+  onClose?: (
+    event: {},
+    reason: "backdropClick" | "escapeKeyDown" | "closeButtonClick"
+  ) => void;
   closeIconEvent: (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => void;
+  icon?: JSX.Element;
   title: string;
   content: JSX.Element;
   action?: JSX.Element;

@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: {
   form: {
@@ -6,12 +6,14 @@ const initialState: {
     account: string;
     password: string;
   };
+  policyOpen: boolean;
 } = {
   form: {
     nickname: "",
     account: "",
     password: "",
   },
+  policyOpen: false,
 };
 
 export const signupSlice = createSlice({
@@ -26,10 +28,14 @@ export const signupSlice = createSlice({
         password: password ?? "",
       };
     },
+    openPolicy: (state, action: PayloadAction<boolean>) => {
+      state.policyOpen = action.payload ?? false;
+    },
     resetForm: (state) => {
       state.form = initialState.form;
+      state.policyOpen = initialState.policyOpen;
     },
   },
 });
 
-export const { resetForm, setForm } = signupSlice.actions;
+export const { setForm, openPolicy, resetForm } = signupSlice.actions;

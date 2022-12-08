@@ -1,1 +1,1 @@
-export { resetForm, setForm, signupSlice } from "./signup.slice";
+export { openPolicy, resetForm, setForm, signupSlice } from "./signup.slice";
