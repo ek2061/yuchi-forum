@@ -7,11 +7,13 @@ import {
 import { apiSlice } from "./api";
 import { appSlice } from "./app";
 import { postSlice } from "./post";
+import { signinSlice } from "./signin";
 import { signupSlice } from "./signup";
 
 const reducer = combineReducers({
   app: appSlice.reducer,
   post: postSlice.reducer,
+  signin: signinSlice.reducer,
   signup: signupSlice.reducer,
   [apiSlice.reducerPath]: apiSlice.reducer,
 });

@@ -10,12 +10,22 @@ import {
   RegisterFormContainer,
   TextInput,
 } from "components";
+import { useAppDispatch, useAppSelector } from "hook/redux";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import { setForm } from "store/signin";
 import { Header } from "views/Header";
 
-const SignInForm: NextPage = () => {
+const SignInForm: NextPage<{
+  form: {
+    account: string;
+    password: string;
+  };
+}> = ({ form }) => {
+  const dispatch = useAppDispatch();
+  const onSubmit = () => console.log(form);
+
   return (
     <RegisterFormContainer component="form">
       <Typography variant="h4" align="center" sx={{ mb: "1rem" }}>
@@ -28,16 +38,28 @@ const SignInForm: NextPage = () => {
         icon={<AccountCircle sx={{ mr: 1, mb: "1rem" }} />}
         placeholder="account"
         sx={{ mb: "1rem" }}
+        value={form.account}
+        onChange={(e) =>
+          dispatch(setForm({ ...form, account: e.target.value }))
+        }
       />
       <TextInput
         icon={<LockIcon sx={{ mr: 1 }} />}
         placeholder="password"
         type="password"
+        value={form.password}
+        onChange={(e) =>
+          dispatch(setForm({ ...form, password: e.target.value }))
+        }
       />
       <HorizontalEnd>
         <Button>Forgot password?</Button>
       </HorizontalEnd>
-      <Button variant="contained" sx={{ width: "100%", mb: "1rem" }}>
+      <Button
+        variant="contained"
+        sx={{ width: "100%", mb: "1rem" }}
+        onClick={onSubmit}
+      >
         Sign in
       </Button>
       <Divider />
@@ -50,6 +72,8 @@ const SignInForm: NextPage = () => {
 };
 
 const SignIn: NextPage = () => {
+  const { form } = useAppSelector((state) => state.signin);
+
   return (
     <Box>
       <Head>
@@ -59,7 +83,7 @@ const SignIn: NextPage = () => {
       </Head>
       <MainContainer component="main">
         <Header />
-        <SignInForm />
+        <SignInForm form={form} />
       </MainContainer>
     </Box>
   );
