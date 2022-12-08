@@ -1,16 +1,28 @@
 import AccountCircle from "@mui/icons-material/AccountCircle";
+import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 import LockIcon from "@mui/icons-material/Lock";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 import { MainContainer, RegisterFormContainer, TextInput } from "components";
+import { useAppDispatch, useAppSelector } from "hook/redux";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import { setForm } from "store/signup";
 import { Header } from "views/Header";
 
-const SignUpForm: NextPage = () => {
+const SignUpForm: NextPage<{
+  form: {
+    nickname: string;
+    account: string;
+    password: string;
+  };
+}> = ({ form }) => {
+  const dispatch = useAppDispatch();
+  const onSubmit = () => console.log(form);
+
   return (
     <RegisterFormContainer component="form">
       <Typography variant="h4" align="center" sx={{ mb: "1rem" }}>
@@ -20,15 +32,32 @@ const SignUpForm: NextPage = () => {
         Create a new account and join the hot topic!
       </Typography>
       <TextInput
+        icon={<AssignmentIndIcon sx={{ mr: 1, mb: "1rem" }} />}
+        placeholder="nickname"
+        sx={{ mb: "1rem" }}
+        value={form.nickname}
+        onChange={(e) =>
+          dispatch(setForm({ ...form, nickname: e.target.value }))
+        }
+      />
+      <TextInput
         icon={<AccountCircle sx={{ mr: 1, mb: "1rem" }} />}
         placeholder="account"
         sx={{ mb: "1rem" }}
+        value={form.account}
+        onChange={(e) =>
+          dispatch(setForm({ ...form, account: e.target.value }))
+        }
       />
       <TextInput
         icon={<LockIcon sx={{ mr: 1, mb: "1rem" }} />}
         placeholder="password"
         type="password"
         sx={{ mb: "1rem" }}
+        value={form.password}
+        onChange={(e) =>
+          dispatch(setForm({ ...form, password: e.target.value }))
+        }
       />
       <Typography variant="inherit" sx={{ mb: "1rem" }}>
         By registering, you agree to the{" "}
@@ -37,7 +66,11 @@ const SignUpForm: NextPage = () => {
         </Link>
         .
       </Typography>
-      <Button variant="contained" sx={{ width: "100%", mb: "1rem" }}>
+      <Button
+        variant="contained"
+        sx={{ width: "100%", mb: "1rem" }}
+        onClick={onSubmit}
+      >
         Sign up
       </Button>
       <Divider />
@@ -50,6 +83,8 @@ const SignUpForm: NextPage = () => {
 };
 
 const SignUp: NextPage = () => {
+  const { form } = useAppSelector((state) => state.signup);
+
   return (
     <Box>
       <Head>
@@ -59,7 +94,7 @@ const SignUp: NextPage = () => {
       </Head>
       <MainContainer component="main">
         <Header />
-        <SignUpForm />
+        <SignUpForm form={form} />
       </MainContainer>
     </Box>
   );

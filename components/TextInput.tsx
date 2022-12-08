@@ -1,10 +1,12 @@
 import Box from "@mui/material/Box";
+import { InputBaseProps } from "@mui/material/InputBase";
 import TextField, { BaseTextFieldProps } from "@mui/material/TextField";
 import { HorizontalStart } from "components";
 import React from "react";
 
 interface TextInputProps extends BaseTextFieldProps {
   icon?: JSX.Element;
+  onChange?: InputBaseProps["onChange"];
 }
 
 export const TextInput: React.FC<TextInputProps> = (props) => {
