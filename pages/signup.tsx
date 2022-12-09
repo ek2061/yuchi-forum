@@ -16,7 +16,7 @@ import { useAppDispatch, useAppSelector } from "hook/redux";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { openPolicy, setForm } from "store/signup";
+import { openPolicy, setForm, useRegisterMutation } from "store/signup";
 import { Header } from "views/Header";
 
 const SignUpForm: NextPage<{
@@ -27,7 +27,11 @@ const SignUpForm: NextPage<{
   };
 }> = ({ form }) => {
   const dispatch = useAppDispatch();
-  const onSubmit = () => console.log(form);
+  const [register] = useRegisterMutation();
+  const onSubmit = async () => {
+    const res = await register(form);
+    console.log(res);
+  };
 
   return (
     <RegisterFormContainer component="form">
