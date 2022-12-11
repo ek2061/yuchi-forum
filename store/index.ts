@@ -1,9 +1,12 @@
 import {
+  Action,
   combineReducers,
   configureStore,
   isRejectedWithValue,
   Middleware,
+  ThunkAction,
 } from "@reduxjs/toolkit";
+import { createWrapper } from "next-redux-wrapper";
 import { apiSlice } from "./api";
 import { appSlice } from "./app";
 import { postSlice } from "./post";
@@ -36,3 +39,11 @@ export const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  Action
+>;
+
+export const wrapper = createWrapper<typeof store>(() => store);
