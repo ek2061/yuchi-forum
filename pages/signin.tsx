@@ -15,7 +15,8 @@ import { useAppDispatch, useAppSelector } from "hook/redux";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { setForm, useLoginMutation } from "store/signin";
+import React from "react";
+import { resetForm, setForm, useLoginMutation } from "store/signin";
 import { Header } from "views/Header";
 
 const SignInForm: NextPage<{
@@ -25,11 +26,12 @@ const SignInForm: NextPage<{
   };
 }> = ({ form }) => {
   const dispatch = useAppDispatch();
-  const [login, { isLoading }] = useLoginMutation();
-  const onSubmit = async () => {
-    const res = await login(form);
-    console.log(res);
-  };
+  const [login, { isLoading, isSuccess }] = useLoginMutation();
+  const onSubmit = async () => await login(form);
+
+  React.useEffect(() => {
+    if (isSuccess) dispatch(resetForm());
+  }, [dispatch, isSuccess]);
 
   return (
     <RegisterFormContainer component="form">
