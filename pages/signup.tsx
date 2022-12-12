@@ -28,10 +28,7 @@ const SignUpForm: NextPage<{
 }> = ({ form }) => {
   const dispatch = useAppDispatch();
   const [register] = useRegisterMutation();
-  const onSubmit = async () => {
-    const res = await register(form);
-    console.log(res);
-  };
+  const onSubmit = async () => await register(form);
 
   return (
     <RegisterFormContainer component="form">

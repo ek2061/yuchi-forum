@@ -23,7 +23,7 @@ const reducer = combineReducers({
 
 const errorMiddleware: Middleware = (api) => (next) => (action) => {
   if (isRejectedWithValue(action)) {
-    // do something
+    api.dispatch({ type: "app/pushMessage", payload: action.payload });
   }
   return next(action);
 };

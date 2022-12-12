@@ -1,9 +1,11 @@
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import type { AppProps } from "next/app";
+import { SnackbarProvider } from "notistack";
 import { Provider } from "react-redux";
 import { wrapper } from "store";
 import { createCustomTheme } from "theme";
+import { GlobalMessage } from "views/GlobalMessage";
 import "../styles/globals.css";
 
 function MyApp({ Component, ...rest }: AppProps) {
@@ -13,10 +15,21 @@ function MyApp({ Component, ...rest }: AppProps) {
 
   return (
     <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline enableColorScheme />
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <SnackbarProvider
+        maxSnack={3}
+        preventDuplicate
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
+        autoHideDuration={2000}
+      >
+        <ThemeProvider theme={theme}>
+          <CssBaseline enableColorScheme />
+          <Component {...pageProps} />
+          <GlobalMessage />
+        </ThemeProvider>
+      </SnackbarProvider>
     </Provider>
   );
 }
