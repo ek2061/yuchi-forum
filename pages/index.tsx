@@ -44,7 +44,10 @@ const Posts: React.FC<{
 };
 
 const Home: NextPage = () => {
-  const { data = [], isLoading } = useListPostQuery({ limit: 5 });
+  const { data = [], isLoading } = useListPostQuery(
+    { limit: 5 },
+    { refetchOnMountOrArgChange: true }
+  );
 
   return (
     <BasicPage>
