@@ -1,5 +1,6 @@
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import LockIcon from "@mui/icons-material/Lock";
+import LoadingButton from "@mui/lab/LoadingButton";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
@@ -24,7 +25,7 @@ const SignInForm: NextPage<{
   };
 }> = ({ form }) => {
   const dispatch = useAppDispatch();
-  const [login] = useLoginMutation();
+  const [login, { isLoading }] = useLoginMutation();
   const onSubmit = async () => {
     const res = await login(form);
     console.log(res);
@@ -59,13 +60,14 @@ const SignInForm: NextPage<{
       <HorizontalEnd>
         <Button>Forgot password?</Button>
       </HorizontalEnd>
-      <Button
+      <LoadingButton
         variant="contained"
         sx={{ width: "100%", mb: "1rem" }}
         onClick={onSubmit}
+        loading={isLoading}
       >
         Sign in
-      </Button>
+      </LoadingButton>
       <Divider />
       Need an account?
       <Button>

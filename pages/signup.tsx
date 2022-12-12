@@ -2,6 +2,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 import LockIcon from "@mui/icons-material/Lock";
 import PolicyIcon from "@mui/icons-material/Policy";
+import LoadingButton from "@mui/lab/LoadingButton";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
@@ -27,7 +28,7 @@ const SignUpForm: NextPage<{
   };
 }> = ({ form }) => {
   const dispatch = useAppDispatch();
-  const [register] = useRegisterMutation();
+  const [register, { isLoading }] = useRegisterMutation();
   const onSubmit = async () => await register(form);
 
   return (
@@ -77,13 +78,14 @@ const SignUpForm: NextPage<{
         </Link>
         .
       </Typography>
-      <Button
+      <LoadingButton
         variant="contained"
         sx={{ width: "100%", mb: "1rem" }}
         onClick={onSubmit}
+        loading={isLoading}
       >
         Sign up
-      </Button>
+      </LoadingButton>
       <Divider />
       Or already have an account?
       <Button>
