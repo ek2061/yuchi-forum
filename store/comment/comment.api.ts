@@ -9,18 +9,18 @@ export const commentApi = apiSlice.injectEndpoints({
       providesTags: () => [{ type: "Comment", id: "LIST" }],
     }),
     createComment: builder.mutation({
-      query: ({ uid, pid, content }) => ({
+      query: ({ pid, content }) => ({
         url: path,
         method: "POST",
-        body: { uid, pid, content },
+        body: { pid, content },
       }),
       invalidatesTags: () => [{ type: "Comment" }],
     }),
     editComment: builder.mutation({
-      query: ({ cid, uid, content }) => ({
+      query: ({ cid, content }) => ({
         url: `${path}/${cid}`,
         method: "PUT",
-        body: { uid, content },
+        body: { content },
       }),
       invalidatesTags: (_, __, arg) => [{ type: "Comment", id: arg.cid }],
     }),

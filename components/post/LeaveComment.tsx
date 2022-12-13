@@ -13,11 +13,9 @@ export const LeaveComment: React.FC<{ pid: number }> = ({ pid }) => {
 
   const [form, setForm] = React.useState<{
     pid: number;
-    uid: string;
     content: string;
   }>({
     pid: pid ?? -1,
-    uid: "2",
     content: "",
   });
 

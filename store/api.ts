@@ -3,7 +3,11 @@ import { HYDRATE } from "next-redux-wrapper";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: process.env.YUCHI_API,
-  credentials: "include",
+  prepareHeaders: (headers) => {
+    const access_token = window.sessionStorage.getItem("access_token");
+    if (access_token) headers.set("Authorization", `Bearer ${access_token}`);
+    return headers;
+  },
 });
 
 export const apiSlice = createApi({

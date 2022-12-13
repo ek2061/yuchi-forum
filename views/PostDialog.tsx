@@ -50,7 +50,7 @@ const PostAction: React.FC<formProps> = ({ form }) => {
   const [createPost, { isLoading, isSuccess }] = useCreatePostMutation();
 
   const onPost = () => {
-    createPost({ uid: 2, title: form.title, content: form.content });
+    createPost({ title: form.title, content: form.content });
   };
 
   const [block, setBlock] = React.useState<boolean>(false);
