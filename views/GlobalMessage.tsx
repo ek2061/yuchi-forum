@@ -13,7 +13,7 @@ const Snackbar: React.FC<{
   React.useEffect(() => {
     if (message) {
       const { status, data } = message;
-      enqueueSnackbar(data.msg, {
+      enqueueSnackbar(data?.msg ?? "error occurred", {
         variant: status >= 400 ? "error" : "warning",
         preventDuplicate: true,
         onExited: () => dispatch(popMessage({ message })),
