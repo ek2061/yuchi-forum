@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import jwt_decode from "jwt-decode";
 import { signinApi } from "store/signin";
 
 const initialState: {
@@ -35,18 +34,12 @@ export const authSlice = createSlice({
         window.sessionStorage.setItem("isAuthenticated", "Y");
         state.isAuthenticated = "Y";
 
-        const { token } = action.payload;
-        const decode: {
-          exp: number;
-          iat: number;
-          nickname: string;
-          uid: string;
-        } = jwt_decode(token);
+        const { token, uid, nickname, expire_ts } = action.payload;
 
-        window.sessionStorage.setItem("uid", decode.uid ?? "");
-        window.sessionStorage.setItem("nickname", decode.nickname ?? "");
+        window.sessionStorage.setItem("uid", uid ?? "");
+        window.sessionStorage.setItem("nickname", nickname ?? "");
         window.sessionStorage.setItem("access_token", token ?? "");
-        window.sessionStorage.setItem("expire_ts", String(decode.exp));
+        window.sessionStorage.setItem("expire_ts", expire_ts ?? "");
       }
     );
     builder.addMatcher(signinApi.endpoints.login.matchRejected, () => {
