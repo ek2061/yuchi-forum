@@ -23,19 +23,22 @@ export const CommentContent: React.FC<{ pid: number }> = ({ pid }) => {
           data.map(
             ({
               cid,
+              uid,
               content,
               createdat,
-              uid,
+              nickname,
             }: {
               cid: number;
+              uid: string;
               content: string;
               createdat: string;
-              uid: string;
+              nickname: string;
             }) => (
               <React.Fragment key={cid}>
                 <Divider sx={{ width: "100%" }} />
                 <CommentCard
-                  postedBy="Feng"
+                  uid={uid}
+                  nickname={nickname}
                   postTime={createdat}
                   body={content}
                 />
