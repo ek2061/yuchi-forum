@@ -47,7 +47,9 @@ export const getServerSideProps: GetServerSideProps<Params> = async ({
   params,
 }) => {
   try {
-    const res = await fetch(`${process.env.YUCHI_API}/post/${params?.pid}`);
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_YUCHI_API}/post/${params?.pid}`
+    );
     const data = await res?.json();
     if (!data) return { notFound: true };
     return { props: data };
