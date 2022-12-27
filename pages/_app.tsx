@@ -1,5 +1,6 @@
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
+import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
 import { SnackbarProvider } from "notistack";
 import { Provider } from "react-redux";
@@ -14,23 +15,25 @@ function MyApp({ Component, ...rest }: AppProps) {
   const theme = createCustomTheme();
 
   return (
-    <Provider store={store}>
-      <SnackbarProvider
-        maxSnack={3}
-        preventDuplicate
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "right",
-        }}
-        autoHideDuration={2000}
-      >
-        <ThemeProvider theme={theme}>
-          <CssBaseline enableColorScheme />
-          <Component {...pageProps} />
-          <GlobalMessage />
-        </ThemeProvider>
-      </SnackbarProvider>
-    </Provider>
+    <SessionProvider>
+      <Provider store={store}>
+        <SnackbarProvider
+          maxSnack={3}
+          preventDuplicate
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "right",
+          }}
+          autoHideDuration={2000}
+        >
+          <ThemeProvider theme={theme}>
+            <CssBaseline enableColorScheme />
+            <Component {...pageProps} />
+            <GlobalMessage />
+          </ThemeProvider>
+        </SnackbarProvider>
+      </Provider>
+    </SessionProvider>
   );
 }
 

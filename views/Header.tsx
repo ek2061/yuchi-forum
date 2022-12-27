@@ -3,11 +3,13 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
+import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { SearchContainer, SearchInput } from "components";
 import { useAppDispatch } from "hook/redux";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "public/yuchi-forum-logo.svg";
@@ -45,6 +47,8 @@ export const Header: React.FC<{}> = () => {
   const dispatch = useAppDispatch();
 
   const onOpen = () => dispatch(openSideDrawer(true));
+
+  const { data: session } = useSession();
 
   return (
     <AppBar
@@ -112,22 +116,34 @@ export const Header: React.FC<{}> = () => {
         <SearchContainer>
           <SearchInput />
         </SearchContainer>
-        <StyledButton variant="text" sx={{ color: "#fff", mx: 0.5 }}>
-          <Link href="/signin">Sign in</Link>
-        </StyledButton>
-        <StyledButton
-          variant="outlined"
-          sx={{
-            color: "#fff",
-            borderColor: "#fff",
-            mx: 0.5,
-            "&:hover": {
+        {!session ? (
+          <StyledButton
+            variant="outlined"
+            sx={{
+              color: "#fff",
               borderColor: "#fff",
-            },
-          }}
-        >
-          <Link href="/signup">Sign up</Link>
-        </StyledButton>
+              mx: 0.5,
+              "&:hover": {
+                borderColor: "#fff",
+              },
+            }}
+          >
+            <Link href="/signin">Sign in</Link>
+          </StyledButton>
+        ) : (
+          <Stack direction="row" spacing={1}>
+            <Typography variant="body1" m={1}>
+              {session?.user?.nickname ?? "User Error"}
+            </Typography>
+            <StyledButton
+              variant="contained"
+              sx={{ color: "#fff", mx: 0.5 }}
+              onClick={() => signOut()}
+            >
+              Sign out
+            </StyledButton>
+          </Stack>
+        )}
       </StyledToolbar>
     </AppBar>
   );

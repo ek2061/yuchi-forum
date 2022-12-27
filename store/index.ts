@@ -9,14 +9,12 @@ import {
 import { createWrapper } from "next-redux-wrapper";
 import { apiSlice } from "./api";
 import { appSlice } from "./app";
-import { authSlice } from "./auth";
 import { postSlice } from "./post";
 import { signinSlice } from "./signin";
 import { signupSlice } from "./signup";
 
 const reducer = combineReducers({
   app: appSlice.reducer,
-  auth: authSlice.reducer,
   post: postSlice.reducer,
   signin: signinSlice.reducer,
   signup: signupSlice.reducer,

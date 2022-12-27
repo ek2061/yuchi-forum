@@ -1,4 +1,5 @@
 import AccountCircle from "@mui/icons-material/AccountCircle";
+import GoogleIcon from "@mui/icons-material/Google";
 import LockIcon from "@mui/icons-material/Lock";
 import LoadingButton from "@mui/lab/LoadingButton";
 import Box from "@mui/material/Box";
@@ -13,10 +14,11 @@ import {
 } from "components";
 import { useAppDispatch, useAppSelector } from "hook/redux";
 import type { NextPage } from "next";
+import { signIn } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
-import React from "react";
-import { resetForm, setForm, useLoginMutation } from "store/signin";
+import { pushMessage } from "store/app";
+import { resetForm, setForm } from "store/signin";
 import { Header } from "views/Header";
 
 const SignInForm: NextPage<{
@@ -26,12 +28,25 @@ const SignInForm: NextPage<{
   };
 }> = ({ form }) => {
   const dispatch = useAppDispatch();
-  const [login, { isLoading, isSuccess }] = useLoginMutation();
-  const onSubmit = async () => await login(form);
 
-  React.useEffect(() => {
-    if (isSuccess) dispatch(resetForm());
-  }, [dispatch, isSuccess]);
+  const handleSignin = async () => {
+    const res = await signIn("credentials", {
+      account: form.account,
+      password: form.password,
+      redirect: false,
+    });
+    if (res?.ok) {
+      dispatch(resetForm());
+      window.history.go(-1);
+    } else {
+      dispatch(
+        pushMessage({
+          status: res?.status ?? 500,
+          data: { msg: "sign in failed" },
+        })
+      );
+    }
+  };
 
   return (
     <RegisterFormContainer component="form">
@@ -65,15 +80,22 @@ const SignInForm: NextPage<{
       <LoadingButton
         variant="contained"
         sx={{ width: "100%", mb: "1rem" }}
-        onClick={onSubmit}
-        loading={isLoading}
+        onClick={handleSignin}
       >
         Sign in
       </LoadingButton>
-      <Divider />
       Need an account?
       <Button>
         <Link href="/signup">Sign up</Link>
+      </Button>
+      <Divider sx={{ mb: "0.6rem" }}>or</Divider>
+      <Button
+        variant="contained"
+        sx={{ width: "100%", backgroundColor: "#4285F4" }}
+        startIcon={<GoogleIcon />}
+        disabled
+      >
+        Continue with Google
       </Button>
     </RegisterFormContainer>
   );
