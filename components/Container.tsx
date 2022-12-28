@@ -59,9 +59,6 @@ export const RegisterFormContainer = styled(Box)(({ theme }) => ({
   boxShadow: "0 0.125rem 0.25rem rgba(0,0,0,0.075)",
   boxSizing: "border-box",
   backgroundColor: "rgba(255,255,255,1.0)",
-  [theme.breakpoints.down("sm")]: {
-    width: "80%",
-  },
 }));
 
 export const UserInfoContainer = styled(Box)(({ theme }) => ({
