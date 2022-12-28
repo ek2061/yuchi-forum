@@ -41,6 +41,21 @@ export const light = createTheme({
             background: "#737476",
           },
         },
+        // global css
+        body: {
+          padding: 0,
+          margin: 0,
+          fontFamily:
+            "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif",
+          backgroundColor: "#e9ecef",
+        },
+        a: {
+          color: "inherit",
+          textDecoration: "none",
+        },
+        "*": {
+          boxSizing: "border-box",
+        },
       },
     },
   },

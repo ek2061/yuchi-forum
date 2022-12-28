@@ -13,10 +13,10 @@ export const postApi = apiSlice.injectEndpoints({
       providesTags: () => [{ type: "Post", id: "LIST" }],
     }),
     createPost: builder.mutation({
-      query: (body) => ({
+      query: ({ title, content }) => ({
         url: path,
         method: "POST",
-        body,
+        body: { title, content },
       }),
       invalidatesTags: () => [{ type: "Post" }],
     }),

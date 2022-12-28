@@ -3,11 +3,14 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
+import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { SearchContainer, SearchInput } from "components";
+import { SearchContainer, SearchInput, UserInfoContainer } from "components";
+import { UserInfo } from "components/UserInfo";
 import { useAppDispatch } from "hook/redux";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "public/yuchi-forum-logo.svg";
@@ -45,6 +48,8 @@ export const Header: React.FC<{}> = () => {
   const dispatch = useAppDispatch();
 
   const onOpen = () => dispatch(openSideDrawer(true));
+
+  const { status } = useSession();
 
   return (
     <AppBar
@@ -100,6 +105,37 @@ export const Header: React.FC<{}> = () => {
             yuchi forum
           </Typography>
         </Link>
+        <SearchContainer>
+          <SearchInput />
+        </SearchContainer>
+        {status === "unauthenticated" ? (
+          <StyledButton
+            variant="outlined"
+            sx={{
+              color: "#fff",
+              borderColor: "#fff",
+              mx: 0.5,
+              "&:hover": {
+                borderColor: "#fff",
+              },
+            }}
+          >
+            <Link href="/signin">Sign in</Link>
+          </StyledButton>
+        ) : (
+          <Stack direction="row" spacing={1}>
+            <UserInfoContainer>
+              <UserInfo />
+            </UserInfoContainer>
+            <StyledButton
+              variant="contained"
+              sx={{ color: "#fff", mx: 0.5 }}
+              onClick={() => signOut()}
+            >
+              Sign out
+            </StyledButton>
+          </Stack>
+        )}
         <CollapsedButton
           size="large"
           edge="start"
@@ -109,25 +145,6 @@ export const Header: React.FC<{}> = () => {
         >
           <MenuIcon />
         </CollapsedButton>
-        <SearchContainer>
-          <SearchInput />
-        </SearchContainer>
-        <StyledButton variant="text" sx={{ color: "#fff", mx: 0.5 }}>
-          <Link href="/signin">Sign in</Link>
-        </StyledButton>
-        <StyledButton
-          variant="outlined"
-          sx={{
-            color: "#fff",
-            borderColor: "#fff",
-            mx: 0.5,
-            "&:hover": {
-              borderColor: "#fff",
-            },
-          }}
-        >
-          <Link href="/signup">Sign up</Link>
-        </StyledButton>
       </StyledToolbar>
     </AppBar>
   );

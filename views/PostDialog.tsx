@@ -13,9 +13,12 @@ import {
   useCreatePostMutation,
 } from "store/post";
 
-const PostForm: React.FC<{}> = () => {
+interface formProps {
+  form: { title: string; content: string };
+}
+
+const PostForm: React.FC<formProps> = ({ form }) => {
   const dispatch = useAppDispatch();
-  const { form } = useAppSelector((state) => state.post);
 
   return (
     <VerticalStart spacing={5}>
@@ -41,14 +44,13 @@ const PostForm: React.FC<{}> = () => {
   );
 };
 
-const PostAction: React.FC<{}> = () => {
+const PostAction: React.FC<formProps> = ({ form }) => {
   const dispatch = useAppDispatch();
-  const { form } = useAppSelector((state) => state.post);
 
   const [createPost, { isLoading, isSuccess }] = useCreatePostMutation();
 
   const onPost = () => {
-    createPost({ uid: 2, title: form.title, content: form.content });
+    createPost({ title: form.title, content: form.content });
   };
 
   const [block, setBlock] = React.useState<boolean>(false);
@@ -75,7 +77,7 @@ const PostAction: React.FC<{}> = () => {
 
 export const PostDialog: React.FC<{}> = () => {
   const dispatch = useAppDispatch();
-  const { open } = useAppSelector((state) => state.post);
+  const { open, form } = useAppSelector((state) => state.post);
 
   const closeIconEvent = () => dispatch(closeAndResetDialog());
   const onClose = (
@@ -99,8 +101,8 @@ export const PostDialog: React.FC<{}> = () => {
       PaperProps={{ sx: { mt: "80px" } }}
       icon={<CreateIcon />}
       title="發一篇廢文"
-      content={<PostForm />}
-      action={<PostAction />}
+      content={<PostForm form={form} />}
+      action={<PostAction form={form} />}
     />
   );
 };

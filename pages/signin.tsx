@@ -1,11 +1,109 @@
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import GoogleIcon from "@mui/icons-material/Google";
+import LockIcon from "@mui/icons-material/Lock";
+import LoadingButton from "@mui/lab/LoadingButton";
 import Box from "@mui/material/Box";
-import { MainContainer } from "components";
+import Button from "@mui/material/Button";
+import Divider from "@mui/material/Divider";
+import Typography from "@mui/material/Typography";
+import {
+  HorizontalEnd,
+  MainContainer,
+  RegisterFormContainer,
+  TextInput,
+} from "components";
+import { useAppDispatch, useAppSelector } from "hook/redux";
 import type { NextPage } from "next";
+import { signIn } from "next-auth/react";
 import Head from "next/head";
+import Link from "next/link";
+import { pushMessage } from "store/app";
+import { resetForm, setForm } from "store/signin";
 import { Header } from "views/Header";
-import { SignInForm } from "views/SignInForm";
+
+const SignInForm: NextPage<{
+  form: {
+    account: string;
+    password: string;
+  };
+}> = ({ form }) => {
+  const dispatch = useAppDispatch();
+
+  const handleSignin = async () => {
+    const res = await signIn("credentials", {
+      account: form.account,
+      password: form.password,
+      redirect: false,
+    });
+    if (res?.ok) {
+      dispatch(resetForm());
+      window.history.go(-1);
+    } else {
+      dispatch(
+        pushMessage({
+          status: res?.status ?? 500,
+          data: { msg: "sign in failed" },
+        })
+      );
+    }
+  };
+
+  return (
+    <RegisterFormContainer component="form">
+      <Typography variant="h4" align="center" sx={{ mb: "1rem" }}>
+        Sign in
+      </Typography>
+      <Typography variant="subtitle1" align="center" sx={{ mb: "1rem" }}>
+        Join the hot topic and have fun!
+      </Typography>
+      <TextInput
+        icon={<AccountCircle sx={{ mr: 1, mb: "1rem" }} />}
+        placeholder="account"
+        sx={{ mb: "1rem" }}
+        value={form.account}
+        onChange={(e) =>
+          dispatch(setForm({ ...form, account: e.target.value }))
+        }
+      />
+      <TextInput
+        icon={<LockIcon sx={{ mr: 1 }} />}
+        placeholder="password"
+        type="password"
+        value={form.password}
+        onChange={(e) =>
+          dispatch(setForm({ ...form, password: e.target.value }))
+        }
+      />
+      <HorizontalEnd>
+        <Button>Forgot password?</Button>
+      </HorizontalEnd>
+      <LoadingButton
+        variant="contained"
+        sx={{ width: "100%", mb: "1rem" }}
+        onClick={handleSignin}
+      >
+        Sign in
+      </LoadingButton>
+      Need an account?
+      <Button>
+        <Link href="/signup">Sign up</Link>
+      </Button>
+      <Divider sx={{ mb: "0.6rem" }}>or</Divider>
+      <Button
+        variant="contained"
+        sx={{ width: "100%", backgroundColor: "#4285F4" }}
+        startIcon={<GoogleIcon />}
+        disabled
+      >
+        Continue with Google
+      </Button>
+    </RegisterFormContainer>
+  );
+};
 
 const SignIn: NextPage = () => {
+  const { form } = useAppSelector((state) => state.signin);
+
   return (
     <Box>
       <Head>
@@ -15,7 +113,7 @@ const SignIn: NextPage = () => {
       </Head>
       <MainContainer component="main">
         <Header />
-        <SignInForm />
+        <SignInForm form={form} />
       </MainContainer>
     </Box>
   );
