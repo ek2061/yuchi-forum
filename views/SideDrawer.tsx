@@ -16,7 +16,7 @@ export const SideDrawer: React.FC<{}> = () => {
   const dispatch = useAppDispatch();
   const { sidedrawerOpen } = useAppSelector((state) => state.app);
 
-  const { data: session } = useSession();
+  const { status } = useSession();
 
   const onOpen = () => dispatch(openSideDrawer(true));
   const onClose = () => dispatch(openSideDrawer(false));
@@ -46,12 +46,12 @@ export const SideDrawer: React.FC<{}> = () => {
             </IconButton>
           </Box>
           <SearchInput />
-          {!session && (
+          {status === "unauthenticated" && (
             <Button variant="outlined" sx={{ width: "100%" }}>
               <Link href="/signin">Sign in</Link>
             </Button>
           )}
-          {session && (
+          {status === "authenticated" && (
             <Button
               variant="contained"
               sx={{ width: "100%" }}
@@ -64,7 +64,7 @@ export const SideDrawer: React.FC<{}> = () => {
             </Button>
           )}
           <Sidebar />
-          {session && (
+          {status === "authenticated" && (
             <VerticalEnd alignItems="end">
               <UserInfo />
             </VerticalEnd>

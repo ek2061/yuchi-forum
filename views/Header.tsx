@@ -49,7 +49,7 @@ export const Header: React.FC<{}> = () => {
 
   const onOpen = () => dispatch(openSideDrawer(true));
 
-  const { data: session } = useSession();
+  const { status } = useSession();
 
   return (
     <AppBar
@@ -108,7 +108,7 @@ export const Header: React.FC<{}> = () => {
         <SearchContainer>
           <SearchInput />
         </SearchContainer>
-        {!session ? (
+        {status === "unauthenticated" ? (
           <StyledButton
             variant="outlined"
             sx={{
