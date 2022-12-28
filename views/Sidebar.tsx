@@ -9,12 +9,22 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { useAppDispatch } from "hook/redux";
+import { useSession } from "next-auth/react";
 import React from "react";
 import { openDialog } from "store/post";
 
 export const Sidebar: React.FC<{}> = () => {
   const dispatch = useAppDispatch();
-  const onOpen = () => dispatch(openDialog());
+
+  const { status } = useSession();
+
+  const onOpen = () => {
+    if (status === "authenticated") {
+      dispatch(openDialog());
+    } else {
+      window.location.href = "/signin";
+    }
+  };
 
   const options = [
     {
