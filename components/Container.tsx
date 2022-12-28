@@ -63,3 +63,10 @@ export const RegisterFormContainer = styled(Box)(({ theme }) => ({
     width: "80%",
   },
 }));
+
+export const UserInfoContainer = styled(Box)(({ theme }) => ({
+  display: "block",
+  [theme.breakpoints.down("md")]: {
+    display: "none",
+  },
+}));

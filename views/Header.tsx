@@ -7,7 +7,8 @@ import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { SearchContainer, SearchInput } from "components";
+import { SearchContainer, SearchInput, UserInfoContainer } from "components";
+import { UserInfo } from "components/UserInfo";
 import { useAppDispatch } from "hook/redux";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
@@ -104,15 +105,6 @@ export const Header: React.FC<{}> = () => {
             yuchi forum
           </Typography>
         </Link>
-        <CollapsedButton
-          size="large"
-          edge="start"
-          color="inherit"
-          sx={{ mx: 1 }}
-          onClick={onOpen}
-        >
-          <MenuIcon />
-        </CollapsedButton>
         <SearchContainer>
           <SearchInput />
         </SearchContainer>
@@ -132,9 +124,9 @@ export const Header: React.FC<{}> = () => {
           </StyledButton>
         ) : (
           <Stack direction="row" spacing={1}>
-            <Typography variant="body1" m={1}>
-              {session?.user?.nickname ?? "User Error"}
-            </Typography>
+            <UserInfoContainer>
+              <UserInfo />
+            </UserInfoContainer>
             <StyledButton
               variant="contained"
               sx={{ color: "#fff", mx: 0.5 }}
@@ -144,6 +136,15 @@ export const Header: React.FC<{}> = () => {
             </StyledButton>
           </Stack>
         )}
+        <CollapsedButton
+          size="large"
+          edge="start"
+          color="inherit"
+          sx={{ mx: 1 }}
+          onClick={onOpen}
+        >
+          <MenuIcon />
+        </CollapsedButton>
       </StyledToolbar>
     </AppBar>
   );
