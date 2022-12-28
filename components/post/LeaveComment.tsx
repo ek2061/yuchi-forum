@@ -1,12 +1,10 @@
 import Button from "@mui/lab/LoadingButton";
-import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import CardContent from "@mui/material/CardContent";
 import TextField from "@mui/material/TextField";
 import { HorizontalStart } from "components";
 import React from "react";
 import { useCreateCommentMutation } from "store/comment";
-import { stringToColor } from "utils/palette";
 
 export const LeaveComment: React.FC<{ pid: number }> = ({ pid }) => {
   const [createComment, { isLoading }] = useCreateCommentMutation();
@@ -29,7 +27,6 @@ export const LeaveComment: React.FC<{ pid: number }> = ({ pid }) => {
   return (
     <CardContent sx={{ pb: "6px" }}>
       <HorizontalStart spacing={2}>
-        <Avatar sx={{ bgcolor: stringToColor("User") }}>U</Avatar>
         <TextField
           variant="standard"
           placeholder="Leave your comment"
