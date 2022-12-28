@@ -1,11 +1,13 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { getSession } from "next-auth/react";
 import { HYDRATE } from "next-redux-wrapper";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: process.env.NEXT_PUBLIC_YUCHI_API,
-  prepareHeaders: (headers) => {
-    const access_token = window.sessionStorage.getItem("access_token");
-    if (access_token) headers.set("Authorization", `Bearer ${access_token}`);
+  prepareHeaders: async (headers) => {
+    const session = await getSession();
+
+    if (session) headers.set("Authorization", `Bearer ${session.user.token}`);
     return headers;
   },
 });
