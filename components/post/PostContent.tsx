@@ -36,11 +36,11 @@ export const PostContent: React.FC<PostContentProps> = ({
     <>
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: stringToColor(postedBy) }}>
-            {postedBy[0]}
+          <Avatar sx={{ bgcolor: stringToColor(postedBy ?? "") }}>
+            {postedBy?.[0]}
           </Avatar>
         }
-        title={postedBy}
+        title={postedBy || "unknown"}
         subheader={formatDate}
       ></CardHeader>
       <CardContent>
