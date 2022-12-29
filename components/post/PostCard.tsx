@@ -52,11 +52,11 @@ export const PostCard: React.FC<PostCardProps> = ({
     <Card sx={{ width: "100%" }}>
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: stringToColor(postedBy) }}>
-            {postedBy[0]}
+          <Avatar sx={{ bgcolor: stringToColor(postedBy ?? "") }}>
+            {postedBy?.[0]}
           </Avatar>
         }
-        title={postedBy}
+        title={postedBy || "unknown"}
         subheader={formatDate}
       ></CardHeader>
       <CardContent sx={{ py: 0 }}>
