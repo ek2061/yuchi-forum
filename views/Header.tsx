@@ -108,7 +108,20 @@ export const Header: React.FC<{}> = () => {
         <SearchContainer>
           <SearchInput />
         </SearchContainer>
-        {status === "unauthenticated" ? (
+        {status === "authenticated" ? (
+          <Stack direction="row" spacing={1}>
+            <UserInfoContainer>
+              <UserInfo />
+            </UserInfoContainer>
+            <StyledButton
+              variant="contained"
+              sx={{ color: "#fff", mx: 0.5 }}
+              onClick={() => signOut()}
+            >
+              Sign out
+            </StyledButton>
+          </Stack>
+        ) : (
           <StyledButton
             variant="outlined"
             sx={{
@@ -122,19 +135,6 @@ export const Header: React.FC<{}> = () => {
           >
             <Link href="/signin">Sign in</Link>
           </StyledButton>
-        ) : (
-          <Stack direction="row" spacing={1}>
-            <UserInfoContainer>
-              <UserInfo />
-            </UserInfoContainer>
-            <StyledButton
-              variant="contained"
-              sx={{ color: "#fff", mx: 0.5 }}
-              onClick={() => signOut()}
-            >
-              Sign out
-            </StyledButton>
-          </Stack>
         )}
         <CollapsedButton
           size="large"
