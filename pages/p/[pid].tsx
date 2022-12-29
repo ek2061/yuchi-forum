@@ -13,6 +13,7 @@ import { HotTopic } from "views/HotTopic";
 interface PostContentProps {
   pid: number;
   uid: string;
+  nickname: string;
   createdat: string;
   title: string;
   content: string;
@@ -25,7 +26,7 @@ const PId: NextPage<PostContentProps> = (data) => {
     <BasicPage>
       <Card sx={{ px: "12px", py: "6px", width: "100%" }}>
         <PostContent
-          postedBy="Yuchi"
+          postedBy={data.nickname}
           postTime={data.createdat}
           title={data.title}
           body={data.content}

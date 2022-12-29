@@ -15,6 +15,7 @@ const Posts: React.FC<{
   isLoading: boolean;
   posts: Array<{
     pid: string;
+    nickname: string;
     createdat: string;
     title: string;
     excerpt: string;
@@ -30,7 +31,7 @@ const Posts: React.FC<{
         <PostCard
           key={v.pid}
           postId={v.pid}
-          postedBy="Yuchi"
+          postedBy={v.nickname}
           postTime={v.createdat}
           title={v.title}
           body={v.excerpt}
